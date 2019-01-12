@@ -24,7 +24,7 @@
 
 #### flutter框架开发语言
 Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程语言，从颜色和展示效果上看，使用的是 Material Design UI 理念。
-![dart语言比较](dart_lang_compare.png)
+![dart语言比较](../images/dart_lang_compare.png)
 
 
 #### flutter插件
