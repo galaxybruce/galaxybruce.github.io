@@ -82,6 +82,7 @@ Hot Reload通过将更新的源代码文件注入正在运行的Dart VM（虚拟
    
 ##### 动态更新ListView 
 1. [ListView的builder工厂构造函数允许您按需建立一个懒加载的列表视图，不需要调用setState方法也可以更新列表](https://flutterchina.club/get-started/codelab/)
+
 ```
 Widget _buildSuggestions() {
     return new ListView.builder(
@@ -100,6 +101,7 @@ Widget _buildSuggestions() {
 
 ```
 2. [不需要懒加载，直接new ListView，需要调用setState更新状态才能刷新列表](https://flutterchina.club/flutter-for-android/)
+
 ```
  Widget getRow(int i) {
     return new GestureDetector(
