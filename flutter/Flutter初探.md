@@ -24,7 +24,6 @@
 
 #### flutter框架开发语言
 Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程语言，从颜色和展示效果上看，使用的是 Material Design UI 理念。
-![56bf2431dd87fb15c82cc4fa990dab35.png](evernotecid://A3A4E860-0792-4535-B8F8-0E1A76D7F761/appyinxiangcom/1888291/ENResource/p160)
 
 #### flutter插件
 在Flutter中，依赖包由[Pub](https://pub.dartlang.org/)仓库管理，项目依赖配置在项目根目录下pubspec.yaml文件中声明即可（类似于NPM的版本声明 Pub Versioning Philosophy），对于未发布在Pub仓库的插件可以使用git仓库地址或文件路径
