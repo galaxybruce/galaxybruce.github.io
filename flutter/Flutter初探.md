@@ -16,6 +16,11 @@
 
 1. 去github上clone稳定版本flutter
 2. 设置全局环境变量到fluter/bin目录
+    ```
+    export PUB_HOSTED_URL=https://pub.flutter-io.cn
+    export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+    export PATH=$PATH:~/android/flutter/bin
+    ```
 3. 运行 flutter doctor
 4. 运行 flutter devices 命令以验证Flutter识别您连接的Android设备
 5. flutter create myapp命令创建一个最简单的flutter程序
