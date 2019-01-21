@@ -60,20 +60,20 @@ List<int> list = const [1, 2, 3],
 
 ##### 方法
 1. 可选命名参数需用大括号括起来，使用 {param1, param2, …} 的形式来指定命名参数
-```
-enableFlags({bool bold, bool hidden}) {
+  ```
+  enableFlags({bool bold, bool hidden}) {
   // ...
-}
-// 可选参数用=号或者:号来设置默认值，没设置就是null
-void enableFlags({bool bold = false, bool hidden = false}) {
+  }
+  // 可选参数用=号或者:号来设置默认值，没设置就是null
+  void enableFlags({bool bold = false, bool hidden = false}) {
   // ...
-}
-
-// 调用方式
-enableFlags(bold: true, hidden: false);
-// 或者不指定参数
-enableFlags();
-```
+  }
+  
+  // 调用方式
+  enableFlags(bold: true, hidden: false);
+  // 或者不指定参数
+  enableFlags();  
+  ```
 2. =>函数，这个 => expr 语法是 { return expr; } 形式的缩写。
 3. 可以创建没有名字的方法，称之为 匿名方法，有时候也被称为 lambda 或者 closure 闭包。 
 3. Dart 是一个真正的面向对象语言，方法也是对象并且具有一种 类型， Function。
@@ -81,7 +81,7 @@ enableFlags();
 ##### 闭包
 
 一个 闭包 是一个方法对象Function，不管该对象在何处被调用， 该对象都可以访问其作用域内 的变量。
-```
+  ```
 Function makeAdder(num addBy) {
   return (num i) => addBy + i;
 }
@@ -92,29 +92,29 @@ main() {
   var add2 = makeAdder(2);
   assert(add2(3) == 5);
 }
-```
+  ```    
 
 ##### 操作符
 1. as操作符：使用 as 操作符把对象转换为特定的类型
 2. ??= 操作符用来指定 值为 null 的变量的值
-```
+  ```
 b ??= value; // 如果 b 是 null，则赋值给 b；
-```
+  ```
 3. expr1 ?? expr2 // 如果 expr1 是 non-null，返回其值； 否则执行 expr2 并返回其结果。
 4. ?. // 例如 foo?.bar 如果 foo 为 null 则返回 null，否则返回 bar 成员
 5. 要测试两个对象代表的是否为同样的内容，使用 == 操作符。(在某些情况下，你需要知道两个对象是否是同一个对象， 使用 identical() 方法。) 
-```
+  ```
 // 两个一样的编译时常量其实是 同一个对象：
 var a = const ImmutablePoint(1, 1);
 var b = const ImmutablePoint(1, 1);
 assert(identical(a, b)); // They are the same instance!
-```
+  ```
 6. is相当于java中的instance，只有当 obj 实现了 T 的接口， obj is T 才是 true。例如 obj is Object 总是 true。
 
 ##### 流程控制语句
 1. 和java相似
 2. where可以用来过滤集合中的某些数据
-```
+  ```
 for (int i = 0; i < candidates.length; i++) {
   var candidate = candidates[i];
   if (candidate.yearsExperience < 5) {
@@ -126,9 +126,9 @@ for (int i = 0; i < candidates.length; i++) {
 // 可以这样写
 candidates.where((c) => c.yearsExperience >= 5)
           .forEach((c) => c.interview());
-```
+  ```
 3. switch case中可以设置标签，用continue跳转到指定的标签处
-```
+  ```
 var command = 'CLOSED';
 switch (command) {
   case 'CLOSED':
@@ -142,11 +142,11 @@ nowClosed:
     executeNowClosed();
     break;
 }
-```
+  ```
 4. assert断言只在检查模式下运行有效，如果在生产模式 运行，则断言不会执行。
 5. Exception
 可以使用on 或者 catch 来声明捕获语句，也可以 同时使用。使用 on 来指定异常类型，使用 catch 来 捕获异常对象。使用 rethrow 关键字可以 把捕获的异常给 重新抛出。
-```
+  ```
 try {
   breedMoreLlamas();
 } on OutOfLlamasException {
@@ -160,12 +160,12 @@ try {
   print('Something really unknown: $e');
   rethrow; // Allow callers to see the exception.
 }
-```
+  ```
 
 ##### 类
 1. 每个实例变量都会自动生成一个 getter 方法（隐含的）,Non-final 实例变量还会自动生成一个 setter 方法
 2. 构造函数赋值简化操作
-```
+  ```
 class Point {
   num x;
 
@@ -173,9 +173,9 @@ class Point {
   // before the constructor body runs.
   Point(this.x);
 }
-```
+  ```
 3. 命名构造函数:使用命名构造函数可以为一个类实现多个构造函数， 或者使用命名构造函数来更清晰的表明你的意图：
-```
+  ```
 class Point {
   num x;
   num y;
@@ -187,9 +187,9 @@ class Point {
     y = json['y'];
   }
 }
-```
+  ```
 3. 在构造函数参数后使用冒号 (:) 可以调用 超类构造函数
-```
+  ```
 class Employee extends Person {
   // Person does not have a default constructor;
   // you must call super.fromJson(data).
@@ -203,9 +203,9 @@ class Employee extends Person {
   // ...
   Employee() : super.fromJson(findDefaultData());
 }
-```
+  ```
 4. 冒号 (:)在构造函数体执行之前除了可以调用超类构造函数之外，还可以 初始化实例参数。
-```
+  ```
 Point.fromJson(Map jsonMap)
       : x = jsonMap['x'],
         y = jsonMap['y'] {
@@ -216,7 +216,7 @@ Point.fromJson(Map jsonMap)
       : x = x,
         y = y,
         distanceFromOrigin = sqrt(x * x + y * y);
-```
+  ```
 5. 如果一个构造函数并不总是返回一个新的对象，则使用 factory 来定义 这个构造函数。类似单例。
 
 ##### 隐式接口
@@ -225,11 +225,11 @@ Point.fromJson(Map jsonMap)
 
 ##### 使用库
 1. 对于内置的库，URI 使用特殊的 dart: scheme; 对于其他的库，你可以使用文件系统路径或者 package: scheme
-```
+  ```
 import 'dart:io';
 import 'package:mylib/mylib.dart';
 import 'package:utils/utils.dart' as utils;
-```
+  ```
 2. 导入库的一部分
 3. 延迟载入库
 
