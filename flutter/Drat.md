@@ -114,19 +114,19 @@ assert(identical(a, b)); // They are the same instance!
 ##### 流程控制语句
 1. 和java相似
 2. where可以用来过滤集合中的某些数据
-  ```
+```
 for (int i = 0; i < candidates.length; i++) {
-  var candidate = candidates[i];
-  if (candidate.yearsExperience < 5) {
-    continue;
-  }
-  candidate.interview();
+var candidate = candidates[i];
+if (candidate.yearsExperience < 5) {
+continue;
 }
-
+candidate.interview();
+}
 // 可以这样写
 candidates.where((c) => c.yearsExperience >= 5)
-          .forEach((c) => c.interview());
-  ```
+.forEach((c) => c.interview());
+```
+
 3. switch case中可以设置标签，用continue跳转到指定的标签处
   ```
 var command = 'CLOSED';
@@ -135,7 +135,6 @@ switch (command) {
     executeClosed();
     continue nowClosed;
     // Continues executing at the nowClosed label.
-
 nowClosed:
   case 'NOW_CLOSED':
     // Runs for both CLOSED and NOW_CLOSED.
@@ -197,7 +196,6 @@ class Employee extends Person {
     print('in Employee');
   }
 }
-
 // 由于超类构造函数的参数在构造函数执行之前执行，所以 参数可以是一个表达式或者 一个方法调用：
 class Employee extends Person {
   // ...
