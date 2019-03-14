@@ -102,18 +102,6 @@ alias xxxDebug='fakeMethod() { adb install -r /Users/bruce/work/sourcecode/Proje
 xxxDebug '1.6.0'
 ```
 
-##### 别名alias传参数
-[给 alias 添加命令行参数](http://toy.linuxtoy.org/2012/03/20/pass-command-line-argument-to-alias.html)
-就是把要执行的命令定义在一个函数中
-注意每一行代码后最好加上分号，不然可能失败。
-```
-// 安装带有日期和版本号的apk
-alias xxxDebug='fakeMethod() { adb install -r /Users/bruce/work/sourcecode/Projects_Android/git/xxx/app/build/outputs/apk/pc/debug/com.xxx._pc_$(date "+%Y%m%d")_$1.apk; };fakeMethod'
-
-// 命令输入
-xxxDebug '1.6.0'
-```
-
 #### shell运算符
 注意点：
 
