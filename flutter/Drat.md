@@ -28,17 +28,17 @@ var print = function(i){ console.log(i);};
 ## vscode IDE 调试
 
 1. vscode调试也是用dart插件
-2. 调试入口在左侧面板上有，启动调试时，会自动.vscode目录下创建launch.json文件，需要调试哪个文件都要在这里面配置
+2. 调试入口在左侧面板上有，启动调试时，会自动在.vscode目录下创建launch.json文件，需要调试哪个文件都要在这里面配置
    ```
    {
     "name": "hello",        //调试任务名称
-    "program": "hello.dart", //带调试文件路径
+    "program": "hello.dart", //待调试文件路径
     "request": "launch",    //固定的 
     "type": "dart"          // 固定的
    }
    ```
 3. 从“调试-启动调试“菜单调试的是左侧面板中当前选中的调试任务
-4. Run Code和Start Without Debuging的区别貌似只是Run Code的的输出在”OUTPUT"tab上，Start Without Debuging的输出在”DEBUG CONSOLE“tab上
+4. 编辑窗口右上角的Run Code按钮和Start Without Debuging的区别貌似只是Run Code的的输出在”OUTPUT"tab上，Start Without Debuging的输出在”DEBUG CONSOLE“tab上
 
 ## 注意点
 
@@ -48,7 +48,7 @@ var print = function(i){ console.log(i);};
 
 ## 语法
 
-## 变量
+### 变量
 
 1. const和final都是不能修改的变量，const变量同时也是final变量。顶级的 final 变量或者类中的 final 变量在 第一次使用的时候初始化，const是编译时常量。
 2. const 关键字不仅仅只用来定义常量。 有可以用来创建不变的值
@@ -110,8 +110,8 @@ main() {
    ```
    b ??= value; // 如果 b 是 null，则赋值给 b；
    ```
-3. expr1 ?? expr2 // 如果 expr1 是 non-null，返回其值； 否则执行 expr2 并返回其结果。
-4. ?. // 例如 foo?.bar 如果 foo 为 null 则返回 null，否则返回 bar 成员
+3. expr1 ?? expr2 &ensp;&ensp;// 如果 expr1 是 non-null，返回其值； 否则执行 expr2 并返回其结果。
+4. ?.&ensp;&ensp;// 例如 foo?.bar 如果 foo 为 null 则返回 null，否则返回 bar 成员
 5. 要测试两个对象代表的是否为同样的内容，使用 == 操作符。\(在某些情况下，你需要知道两个对象是否是同一个对象， 使用 identical\(\) 方法。\) 
    ```
    // 两个一样的编译时常量其实是 同一个对象：
@@ -128,11 +128,11 @@ main() {
 
    ```
    for (int i = 0; i < candidates.length; i++) {
-   var candidate = candidates[i];
-   if (candidate.yearsExperience < 5) {
-   continue;
-   }
-   candidate.interview();
+      var candidate = candidates[i];
+      if (candidate.yearsExperience < 5) {
+         continue;
+      }
+      candidate.interview();
    }
    // 可以这样写
    candidates.where((c) => c.yearsExperience >= 5)
@@ -145,14 +145,14 @@ main() {
    var command = 'CLOSED';
    switch (command) {
    case 'CLOSED':
-    executeClosed();
-    continue nowClosed;
-    // Continues executing at the nowClosed label.
-   nowClosed:
+       executeClosed();
+       continue nowClosed;
+       // Continues executing at the nowClosed label.
+      nowClosed:
    case 'NOW_CLOSED':
-    // Runs for both CLOSED and NOW_CLOSED.
-    executeNowClosed();
-    break;
+       // Runs for both CLOSED and NOW_CLOSED.
+       executeNowClosed();
+       break;
    }
    ```
 
@@ -161,17 +161,17 @@ main() {
    可以使用on 或者 catch 来声明捕获语句，也可以 同时使用。使用 on 来指定异常类型，使用 catch 来 捕获异常对象。使用 rethrow 关键字可以 把捕获的异常给 重新抛出。
    ```
    try {
-   breedMoreLlamas();
+      breedMoreLlamas();
    } on OutOfLlamasException {
-   // A specific exception
-   buyMoreLlamas();
+      // A specific exception
+      buyMoreLlamas();
    } on Exception catch (e) {
-   // Anything else that is an exception
-   print('Unknown exception: $e');
+      // Anything else that is an exception
+      print('Unknown exception: $e');
    } catch (e) {
-   // No specified type, handles all
-   print('Something really unknown: $e');
-   rethrow; // Allow callers to see the exception.
+      // No specified type, handles all
+      print('Something really unknown: $e');
+      rethrow; // Allow callers to see the exception.
    }
    ```
 
@@ -182,11 +182,11 @@ main() {
 
    ```
    class Point {
-   num x;
+      num x;
 
-   // Syntactic sugar for setting x and y
-   // before the constructor body runs.
-   Point(this.x);
+      // Syntactic sugar for setting x and y
+      // before the constructor body runs.
+      Point(this.x);
    }
    ```
 
@@ -194,31 +194,31 @@ main() {
 
    ```
    class Point {
-   num x;
-   num y;
+      num x;
+      num y;
 
-   Point(this.x, this.y);
-   // Named constructor
-   Point.fromJson(Map json) {
-    x = json['x'];
-    y = json['y'];
-   }
+      Point(this.x, this.y);
+      // Named constructor
+      Point.fromJson(Map json) {
+       x = json['x'];
+       y = json['y'];
+      }
    }
    ```
 
 4. 在构造函数参数后使用冒号 \(:\) 可以调用 超类构造函数
    ```
    class Employee extends Person {
-   // Person does not have a default constructor;
-   // you must call super.fromJson(data).
-   Employee.fromJson(Map data) :            super.fromJson(data) {
-    print('in Employee');
-   }
+      // Person does not have a default constructor;
+      // you must call super.fromJson(data).
+      Employee.fromJson(Map data) : super.fromJson(data) {
+       print('in Employee');
+      }
    }
    // 由于超类构造函数的参数在构造函数执行之前执行，所以 参数可以是一个表达式或者 一个方法调用：
    class Employee extends Person {
-   // ...
-   Employee() : super.fromJson(findDefaultData());
+      // ...
+       Employee() : super.fromJson(findDefaultData());
    }
    ```
 5. 冒号 \(:\)在构造函数体执行之前除了可以调用超类构造函数之外，还可以 初始化实例参数。
