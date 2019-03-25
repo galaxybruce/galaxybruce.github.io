@@ -144,12 +144,12 @@ main() {
    ```
    var command = 'CLOSED';
    switch (command) {
-   case 'CLOSED':
+      case 'CLOSED':
        executeClosed();
        continue nowClosed;
        // Continues executing at the nowClosed label.
-      nowClosed:
-   case 'NOW_CLOSED':
+   nowClosed:
+      case 'NOW_CLOSED':
        // Runs for both CLOSED and NOW_CLOSED.
        executeNowClosed();
        break;
@@ -240,8 +240,7 @@ main() {
 
 ### 隐式接口
 
-每个类都隐式的定义了一个包含所有实例成员的接口， 并且这个类实现了这个接口。如果你想 创建类 A 来支持 类 B 的 api，而不想继承 B 的实现， 则类 A 应该实现 B 的接口。  
-就是说任何class可以被当做interface被其他用implement关键字实现，与extends关键字不同的是，实现的方法中不能调用super。
+Dart是没有interface这种东西的，但并不以为着这门语言没有接口，事实上，Dart任何一个类都是接口，你可以实现任何一个类，只需要重写那个类里面的所有具体方法。每个类都隐式的定义了一个包含所有实例成员的接口， 并且这个类实现了这个接口。如果你想 创建类 A 来支持 类 B 的 api，而不想继承 B 的实现， 则类 A 应该实现 B 的接口。就是说任何class可以被当做interface被其他用implement关键字实现，与extends关键字不同的是，实现的方法中不能调用super。
 
 ### 使用库
 
@@ -257,4 +256,20 @@ main() {
 ### 可调用的类
 
 如果 Dart 类实现了 call\(\) 函数则 可以把该类当做方法来调用。
+
+### Mixin
+[Flutter基础：理解Dart的Mixin继承机制](https://kevinwu.cn/p/ae2ce64/#%E5%9C%BA%E6%99%AF)  
+mixins是一个强大的概念，允许您跨多个类层次结构重用代码。当我们想要在不共享相同类层次结构的多个类之间共享行为时，或者在超类中实现此类行为没有意义时，Mixins非常有用。  
+如果我们不想让我们创建的mixin被实例化或扩展，同时使用factory关键字结合_权限符
+```
+abstract class Walker {
+  // This class is intended to be used as a mixin, and should not be
+  // extended directly.
+  factory Walker._() => null;
+
+  void walk() {
+    print("I'm walking");
+  }
+}
+```
 
