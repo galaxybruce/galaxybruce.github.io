@@ -46,6 +46,11 @@ var print = function(i){ console.log(i);};
 2. 虽然可以用var不指定类型声明变量的方式，建议指明类型可以更加清晰的表达你的意图。 IDE 编译器等工具有可以使用类型来更好的帮助你， 可以提供代码补全、提前发现 bug 等功能。
 3. stagehandle需要设置环境变量：export PATH="$PATH":"$HOME/.pub-cache/bin"
 
+## 重要概念
+1. 和 Java 不同的是，Dart 没有 public、 protected、 和 private 关键字。如果一个标识符以 (_) 开头，则该标识符 在库内是私有的。
+2. 没有指定类型的变量的类型为 dynamic。
+3. Dart支持顶级方法和变量，就是在类外部定义的方法（如main())和变量
+
 ## 语法
 
 ### 变量
@@ -85,6 +90,10 @@ var print = function(i){ console.log(i);};
 2. =&gt;函数，这个 =&gt; expr 语法是 { return expr; } 形式的缩写。
 3. 可以创建没有名字的方法，称之为 匿名方法，有时候也被称为 lambda 或者 closure 闭包。 
 4. Dart 是一个真正的面向对象语言，方法也是对象并且具有一种 类型， Function。
+5. 方法定义时，可以没有返回类型。
+6. 所有的函数都返回一个值。如果没有指定返回值，则 默认把语句 return null; 作为函数的最后一个语句执行。
+
+
 
 ### 闭包
 
@@ -120,6 +129,7 @@ main() {
    assert(identical(a, b)); // They are the same instance!
    ```
 6. is相当于java中的instance，只有当 obj 实现了 T 的接口， obj is T 才是 true。例如 obj is Object 总是 true。
+7. 级联操作符 (..) 可以在同一个对象上 连续调用多个函数以及访问成员变量。 使用级联操作符可以避免创建 临时变量， 并且写出来的代码看起来 更加流畅：
 
 ### 流程控制语句
 
@@ -190,7 +200,7 @@ main() {
    }
    ```
 
-3. 命名构造函数:使用命名构造函数可以为一个类实现多个构造函数， 或者使用命名构造函数来更清晰的表明你的意图：
+3. 命名构造函数:使用命名构造函数可以为一个类实现多个构造函数，或者使用命名构造函数来更清晰的表明你的意图：
 
    ```
    class Point {
@@ -215,7 +225,7 @@ main() {
        print('in Employee');
       }
    }
-   // 由于超类构造函数的参数在构造函数执行之前执行，所以 参数可以是一个表达式或者 一个方法调用：
+   // 由于超类构造函数的参数在构造函数执行之前执行，所以 参数可以是一个表达式或者 一个方法调用(_只能是静态方法，不能是成员方法_)：
    class Employee extends Person {
       // ...
        Employee() : super.fromJson(findDefaultData());
@@ -237,7 +247,21 @@ main() {
    ```
 
 6. 如果一个构造函数并不总是返回一个新的对象，则使用 factory 来定义 这个构造函数。类似单例。
+7. 重定向构造函数，就是构造函数调动类中的其他构造函数，在构造函数声明后，使用 冒号调用其他构造函数。
+8. 使用 abstract 修饰符定义一个 抽象类—一个不能被实例化的类。 抽象类通常用来定义接口， 以及部分实现。
+9. 通过operator关键字在类中定义方法可覆写的操作符
 
+### 常量构造函数
+有些类提供了常量构造函数。使用常量构造函数 可以创建编译时常量，要使用常量构造函数只需要用 const 替代 new 即可：  
+```
+var p = const ImmutablePoint(2, 2);
+```
+两个一样的编译时常量其实是 同一个对象：
+```
+var a = const ImmutablePoint(1, 1);
+var b = const ImmutablePoint(1, 1);
+assert(identical(a, b)); // They are the same instance!
+```
 ### 隐式接口
 
 Dart是没有interface这种东西的，但并不以为着这门语言没有接口，事实上，Dart任何一个类都是接口，你可以实现任何一个类，只需要重写那个类里面的所有具体方法。每个类都隐式的定义了一个包含所有实例成员的接口， 并且这个类实现了这个接口。如果你想 创建类 A 来支持 类 B 的 api，而不想继承 B 的实现， 则类 A 应该实现 B 的接口。就是说任何class可以被当做interface被其他用implement关键字实现，与extends关键字不同的是，实现的方法中不能调用super。
@@ -250,11 +274,17 @@ Dart是没有interface这种东西的，但并不以为着这门语言没有接�
    import 'package:mylib/mylib.dart';
    import 'package:utils/utils.dart' as utils;
    ```
-2. 导入库的一部分
-3. 延迟载入库
+2. 导入库的一部分 用关键字show或者hide
+   ```
+   // Import only foo.
+   import 'package:lib1/lib1.dart' show foo;
+
+   // Import all names EXCEPT foo.
+   import 'package:lib2/lib2.dart' hide foo;
+   ```
+3. 延迟载入库，需要先使用 deferred as 来 导入
 
 ### 可调用的类
-
 如果 Dart 类实现了 call\(\) 函数则 可以把该类当做方法来调用。
 
 ### Mixin
@@ -272,4 +302,11 @@ abstract class Walker {
   }
 }
 ```
+
+## 异步支持
+1. 用async 异步方法和 await 表达式实现异步编程
+2. 如果 await 无法正常使用，请确保是在一个 async 方法中。
+3. 在 await expression 中， expression 的返回值通常是一个 Future； 如果返回的值不是 Future，则 Dart 会自动把该值放到 Future 中返回。await expression 会阻塞住，直到需要的对象返回为止。
+
+
 
