@@ -360,7 +360,8 @@ abstract class Walker {
 异步生成器：返回Stream对象
 要实现同步生成器函数，将函数体标记为sync*，并使用yield语句传递值;
 要实现异步生成器函数，将函数体标记为async*，并使用yield语句传递值;
-如果您的生成器是递归的，您可以使用yield*来改进它的性能:  
+如果您的生成器是递归的，您可以使用yield*来改进它的性能: 
+ 
 ```
 Iterable<int> naturalsDownFrom(int n) sync* {
   if (n > 0) {
