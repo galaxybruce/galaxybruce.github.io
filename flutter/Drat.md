@@ -3,6 +3,7 @@
 1. [Dart中文网](http://dart.goodev.org/)
 2. [Dart](https://www.dartlang.org/)
 3. [stagehand-dart project generator](https://github.com/dart-lang/stagehand)
+4. [最佳实践](http://dart.goodev.org/guides/language/effective-dart/usage)
 
 ## 函数式编程
 
@@ -250,6 +251,24 @@ main() {
 7. 重定向构造函数，就是构造函数调动类中的其他构造函数，在构造函数声明后，使用 冒号调用其他构造函数。
 8. 使用 abstract 修饰符定义一个 抽象类—一个不能被实例化的类。 抽象类通常用来定义接口， 以及部分实现。
 9. 通过operator关键字在类中定义方法可覆写的操作符
+10. 使用 get 和 set 关键字定义 getter 和 setter，来创建新的属性
+```
+class Rectangle {
+  num left;
+  num top;
+  num width;
+  num height;
+
+  Rectangle(this.left, this.top, this.width, this.height);
+
+  // Define two calculated properties: right and bottom.
+  num get right             => left + width;
+      set right(num value)  => left = value - width;
+  num get bottom            => top + height;
+      set bottom(num value) => top = value - height;
+}
+
+```
 
 ### 常量构造函数
 有些类提供了常量构造函数。使用常量构造函数 可以创建编译时常量，要使用常量构造函数只需要用 const 替代 new 即可：  
@@ -308,5 +327,22 @@ abstract class Walker {
 2. 如果 await 无法正常使用，请确保是在一个 async 方法中。
 3. 在 await expression 中， expression 的返回值通常是一个 Future； 如果返回的值不是 Future，则 Dart 会自动把该值放到 Future 中返回。await expression 会阻塞住，直到需要的对象返回为止。
 
+## Isolates
+所有的 Dart 代码在 isolates 中运行而不是线程。 每个 isolate 都有自己的堆内存，并且确保每个 isolate 的状态都不能被其他 isolate 访问。
 
+## TypeDef
+在 Dart 语言中，方法也是对象。 使用 typedef, 或者 function-type alias 来为方法类型命名， 然后可以使用命名的方法。
+
+## Metadata
+定义了一个带有两个参数的 @todo 注解  
+```
+library todo;
+
+class todo {
+  final String who;
+  final String what;
+
+  const todo(this.who, this.what);
+}
+```
 
