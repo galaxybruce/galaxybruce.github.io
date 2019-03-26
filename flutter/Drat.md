@@ -252,6 +252,7 @@ main() {
 8. 使用 abstract 修饰符定义一个 抽象类—一个不能被实例化的类。 抽象类通常用来定义接口， 以及部分实现。
 9. 通过operator关键字在类中定义方法可覆写的操作符
 10. 使用 get 和 set 关键字定义 getter 和 setter，来创建新的属性  
+
 ```
 class Rectangle {
   num left;
