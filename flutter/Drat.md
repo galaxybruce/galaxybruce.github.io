@@ -2,7 +2,7 @@
 
 1. [Dart中文网](http://dart.goodev.org/)
 2. [Dart](https://www.dartlang.org/)
-3. [stagehand-dart project generator](https://github.com/dart-lang/stagehand)
+3. [stagehand-Dart 项目生成器](https://github.com/dart-lang/stagehand)
 4. [最佳实践](http://dart.goodev.org/guides/language/effective-dart/usage)
 
 ## 函数式编程
@@ -252,23 +252,43 @@ main() {
 8. 使用 abstract 修饰符定义一个 抽象类—一个不能被实例化的类。 抽象类通常用来定义接口， 以及部分实现。
 9. 通过operator关键字在类中定义方法可覆写的操作符
 10. 使用 get 和 set 关键字定义 getter 和 setter，来创建新的属性  
-
 ```
 class Rectangle {
-  num left;
-  num top;
-  num width;
-  num height;
+   num left;
+   num top;
+   num width;
+   num height;
 
-  Rectangle(this.left, this.top, this.width, this.height);
+   Rectangle(this.left, this.top, this.width, this.height);
 
-  // Define two calculated properties: right and bottom.
-  num get right             => left + width;
-      set right(num value)  => left = value - width;
-  num get bottom            => top + height;
-      set bottom(num value) => top = value - height;
+   // Define two calculated properties: right and bottom.
+   num get right => left + width;
+   set right(num value) => left = value - width;
+   num get bottom => top + height;
+   set bottom(num value) => top = value - height;
 }
 
+```     
+11. Dart 并不支持构造函数的重载，用没有方法体的可选命名参数的构造方法来替代 Java 代码中的重载构造方法。  
+```
+class Rectangle {
+  int width;
+  int height;
+  Point origin;
+
+  Rectangle({this.origin = const Point(0, 0), this.width = 0, this.height = 0});
+
+  @override
+  String toString() =>
+      'Origin: (${origin.x}, ${origin.y}), width: $width, height: $height';
+}
+
+main() {
+  print(Rectangle(origin: const Point(10, 20), width: 100, height: 200));
+  print(Rectangle(origin: const Point(10, 10)));
+  print(Rectangle(width: 200));
+  print(Rectangle());
+}
 ```
 
 ### 常量构造函数
