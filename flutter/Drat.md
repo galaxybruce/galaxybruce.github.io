@@ -5,6 +5,9 @@
 3. [stagehand-Dart 项目生成器](https://github.com/dart-lang/stagehand)
 4. [最佳实践](http://dart.goodev.org/guides/language/effective-dart/usage)
 
+## 在线练习
+[dartpad](https://dartpad.cn)
+
 ## 函数式编程
 
 函数式编程就是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的。
