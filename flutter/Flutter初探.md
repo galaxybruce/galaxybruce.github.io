@@ -11,6 +11,8 @@
 
 1. 进入flutter目录，执行flutter doctor命令找不到命令错误，需要先设置全局环境变量才行。
 2. Dart是单线程执行模型，支持Isolates（在另一个线程上运行Dart代码的方式）、事件循环和异步编程。 除非您启动一个Isolate，否则您的Dart代码将在主UI线程中运行，并由事件循环驱动（译者语：和JavaScript一样）。
+3. Dart SDK已经在捆绑在Flutter里了，没有必要单独安装Dart。 flutter/bin/cache/dart-sdk
+4. 第一次运行一个flutter命令（如flutter doctor）时，它会下载它自己的依赖项并自行编译。以后再运行就会快得多。
 
 ## 安装
 
@@ -21,7 +23,7 @@
     export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
     export PATH=$PATH:~/android/flutter/bin
     ```
-3. 运行 flutter doctor 命令
+3. 运行 flutter doctor 命令，该命令检查您的环境并在终端窗口中显示报告，如是否安装Android SDK等
 4. 运行 flutter devices 命令以验证Flutter识别您连接的Android设备
 5. flutter create myapp命令创建一个最简单的flutter程序
 6. 运行 flutter run 命令来运行应用程序
