@@ -49,6 +49,7 @@ var print = function(i){ console.log(i);};
 1. 所有能够使用变量引用的都是对象，如int a;那a的默认值为 null。
 2. 虽然可以用var不指定类型声明变量的方式，建议指明类型可以更加清晰的表达你的意图。 IDE 编译器等工具有可以使用类型来更好的帮助你， 可以提供代码补全、提前发现 bug 等功能。
 3. stagehandle需要设置环境变量：export PATH="$PATH":"$HOME/.pub-cache/bin"
+4. 新建实例时可以去掉关键字new
 
 ## 重要概念
 1. 和 Java 不同的是，Dart 没有 public、 protected、 和 private 关键字。如果一个标识符以 (_) 开头，则该标识符 在库内是私有的。
@@ -376,8 +377,20 @@ Iterable<int> naturalsDownFrom(int n) sync* {
 ## Isolates
 所有的 Dart 代码在 isolates 中运行而不是线程。 每个 isolate 都有自己的堆内存，并且确保每个 isolate 的状态都不能被其他 isolate 访问。
 
-## TypeDef
-在 Dart 语言中，方法也是对象。 使用 typedef, 或者 function-type alias 来为方法类型命名， 然后可以使用命名的方法。
+## TypeDef 函数类型别名
+在 Dart 语言中，方法也是对象。 使用 typedef, 或者 function-type alias 来为方法类型命名， 然后可以使用命名的方法。  
+定义有两种形式，下面都是取了一个叫做Compare别名的方法：
+1. 像普通的方法那样申明  
+
+```
+typedef int Compare(int a, int b);
+```
+2. 用Function申明  
+
+```
+typedef Compare = int Function(int a, int b);
+```
+
 
 ## Metadata
 定义了一个带有两个参数的 @todo 注解  

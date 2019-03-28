@@ -6,6 +6,7 @@
 4. [Flutter原理与实践-美团](https://tech.meituan.com/waimai_flutter_practice.html)
 5. [Stack Overflow来处理“HOWTO”类型的问题](https://stackoverflow.com/tags/flutter)
 6. [Android各种场景如何在Flutter中处理](https://flutterchina.club/flutter-for-android/)
+7. [阿里出品的各种widget演示](https://github.com/alibaba/flutter-go)
 
 ## 注意点
 
@@ -15,6 +16,7 @@
 4. 第一次运行一个flutter命令（如flutter doctor）时，它会下载它自己的依赖项并自行编译。以后再运行就会快得多。
 
 ## 安装
+怎样使用IDE看这里：https://flutterchina.club/using-ide/
 
 1. 去github上clone稳定版本flutter
 2. 设置全局环境变量到fluter/bin目录
@@ -26,8 +28,15 @@
 3. 运行 flutter doctor 命令，该命令检查您的环境并在终端窗口中显示报告，如是否安装Android SDK等
 4. 运行 flutter devices 命令以验证Flutter识别您连接的Android设备
 5. flutter create myapp命令创建一个最简单的flutter程序
-6. 运行 flutter run 命令来运行应用程序
-7. 用android studio开发需要安装Flutter和Dart插件，File-New Flutter Project或者File Open打开已存在的flutter工程
+6. 在项目根目录下运行 flutter run 命令来运行应用程序
+7. 用android studio开发需要安装Flutter插件和Dart插件，File-New Flutter Project或者File Open打开已存在的flutter工程
+8. 在flutter工程中右击android目录-flutter-open android module in android studio可以在新的窗口中打开android部分代码
+
+## 常用flutter命令 
+通过flutter help可以查看有哪些命令
+1. flutter channel 查看flutter当前使用的分支master还是stable
+2. 要切换分支，请使用flutter channel beta 或 flutter channel master
+3. [升级 Flutter相关命令](https://flutterchina.club/upgrading/)
 
 ## flutter框架开发语言
 Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程语言，从颜色和展示效果上看，使用的是 Material Design UI 理念。
