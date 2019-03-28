@@ -1,4 +1,5 @@
-## 参考文章
+#
+# 参考文章
 
 1. [Flutter中文网](https://flutterchina.club/)
 2. [flutter-io.cn](https://flutter-io.cn/)
@@ -20,11 +21,11 @@
 
 1. 去github上clone稳定版本flutter
 2. 设置全局环境变量到fluter/bin目录
-    ```
-    export PUB_HOSTED_URL=https://pub.flutter-io.cn
-    export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
-    export PATH=$PATH:~/android/flutter/bin
-    ```
+```
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+export PATH=$PATH:~/android/flutter/bin
+```
 3. 运行 flutter doctor 命令，该命令检查您的环境并在终端窗口中显示报告，如是否安装Android SDK等
 4. 运行 flutter devices 命令以验证Flutter识别您连接的Android设备
 5. flutter create myapp命令创建一个最简单的flutter程序
@@ -32,7 +33,7 @@
 7. 用android studio开发需要安装Flutter插件和Dart插件，File-New Flutter Project或者File Open打开已存在的flutter工程
 8. 在flutter工程中右击android目录-flutter-open android module in android studio可以在新的窗口中打开android部分代码
 
-## 常用flutter命令 
+## 常用flutter命令
 通过flutter help可以查看有哪些命令
 1. flutter channel 查看flutter当前使用的分支master还是stable
 2. 要切换分支，请使用flutter channel beta 或 flutter channel master
@@ -42,27 +43,39 @@
 Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程语言，从颜色和展示效果上看，使用的是 Material Design UI 理念。
 ![dart语言比较](../images/dart_lang_compare.png)
 
+## Flutter Widget框架概述
+1. Flutter Widget采用现代响应式框架构建，这是从 React 中获得的灵感，中心思想是用widget构建你的UI。
+2. 框架强制根widget覆盖整个屏幕。
+3. Flutter框架将依次构建这些widget，直到构建到最底层的子widget时，这些最低层的widget通常为RenderObject，它会计算并描述widget的几何形状。
+4. 无状态的widget，它将通过构造函数从父widget中接收到的值存储在**final**成员变量中，然后在build函数中使用它们。
+
+## 写UI的思路
+1. 整理页面需要哪些widget以及他们的嵌套关系
+2. 分析哪些widget需要把逻辑封装起来
+3. 需要封装起来widget是有状态的还是无状态的，一般来说外层的widget保持状态，内部的widget需要的数据通过构造函数传进来，然后再通过事件告诉父widget，原则是事件流是“向上”传递的，而状态流是“向下”传递的。
+4. 状态数据一般是保存在widget对应的State类中的变量上。
+5. 最后是具体些widget的时候了，怎么写查文档或者google。
+
 
 ## flutter插件
 在Flutter中，依赖包由[Pub](https://pub.dartlang.org/)仓库管理，项目依赖配置在项目根目录下pubspec.yaml文件中声明即可（类似于NPM的版本声明 Pub Versioning Philosophy），对于未发布在Pub仓库的插件可以使用git仓库地址或文件路径
-```dependencies: 
-  url_launcher: ">=0.1.2 <0.2.0"
-  collection: "^0.1.2"
-  plugin1: 
-    git: 
-      url: "git://github.com/flutter/plugin1.git"
-  plugin2: 
-    path: ../plugin2/
-```  
-    
+```dependencies:
+url_launcher: ">=0.1.2 <0.2.0"
+collection: "^0.1.2"
+plugin1:
+git:
+url: "git://github.com/flutter/plugin1.git"
+plugin2:
+path: ../plugin2/
+```
 ## 一切皆控件
 在Flutter中，所有功能都可以通过组合多个Widget来实现，包括对齐方式、按行排列、按列排列、网格排列甚至事件处理等等。在Flutter中“一切皆是控件”，通过组合、嵌套不同类型的控件，就可以构建出任意功能、任意复杂度的界面
 
 
 ## [Android发布版本](https://flutterchina.club/android-release/)
-默认情况下，flutter run命令会使用调试版本配置。    
-编译release包: flutter build apk   
-安装：flutter install  
+默认情况下，flutter run命令会使用调试版本配置。
+编译release包: flutter build apk
+安装：flutter install
 注意：这三个命令都要在项目根目录下执行
 
 ## Widget不可变特性理解
@@ -71,16 +84,16 @@ Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程�
 所以Flutter中不存在添加或删除组件，您可以传入一个函数，该函数返回一个widget给父项，并通过布尔值控制该widget的创建，可以理解成重新动态创建。
 ```
 body: new Center(
-    child: _getToggleChild(),
+child: _getToggleChild(),
 )
 
 _getToggleChild() {
-    if (toggle) {
-      return new Text('Toggle One');
-    } else {
-      return new MaterialButton(onPressed:  () {}, child: new Text('Toggle Two'));
-    }
-  }
+if (toggle) {
+return new Text('Toggle One');
+} else {
+return new MaterialButton(onPressed: () {}, child: new Text('Toggle Two'));
+}
+}
 
 ```
 
@@ -95,47 +108,46 @@ Hot Reload通过将更新的源代码文件注入正在运行的Dart VM（虚拟
 
 ## 我可以在Flutter应用程序的后台运行Dart代码吗？
 由于在Android和iOS平台上支持后台执行的基本差异，在后台运行代码具有特定于平台的API。
-在Android上，android_alarm_manager 即使您的Flutter应用程序不在前台，该插件也可让您在后台运行Dart代码。  
+在Android上，android_alarm_manager 即使您的Flutter应用程序不在前台，该插件也可让您在后台运行Dart代码。
 在iOS上，我们目前不支持此功能。请留意Bug 6192的更新。
-   
-## 动态更新ListView 
+## 动态更新ListView
 1. [ListView的builder工厂构造函数允许您按需建立一个懒加载的列表视图，不需要调用setState方法也可以更新列表](https://flutterchina.club/get-started/codelab/)
 
 ```
 Widget _buildSuggestions() {
-    return new ListView.builder(
-        // 该方法至少执行一次，哪怕列表是空的
-      itemBuilder: (context, i) {
-        final index = i ~/ 2;
-        // 如果是建议列表中最后一个单词对
-        if (index >= _suggestions.length) {
-          // ...接着再生成10个单词对，然后添加到建议列表，不需要调用setState方法
-          _suggestions.addAll(generateWordPairs().take(10));
-        }
-        return _buildRow(_suggestions[index]);
-      }
-    );
-  }
+return new ListView.builder(
+// 该方法至少执行一次，哪怕列表是空的
+itemBuilder: (context, i) {
+final index = i ~/ 2;
+// 如果是建议列表中最后一个单词对
+if (index >= _suggestions.length) {
+// ...接着再生成10个单词对，然后添加到建议列表，不需要调用setState方法
+_suggestions.addAll(generateWordPairs().take(10));
+}
+return _buildRow(_suggestions[index]);
+}
+);
+}
 
 ```
 2. [不需要懒加载，直接new ListView，需要调用setState更新状态才能刷新列表](https://flutterchina.club/flutter-for-android/)
 
 ```
- Widget getRow(int i) {
-    return new GestureDetector(
-      child: new Padding(
-          padding: new EdgeInsets.all(10.0),
-          child: new Text("Row $i")),
-      onTap: () {
-        // 必须调用setState
-        setState(() {
-          widgets = new List.from(widgets);
-          widgets.add(getRow(widgets.length + 1));
-          print('row $i');
-        });
-      },
-    );
-  }
+Widget getRow(int i) {
+return new GestureDetector(
+child: new Padding(
+padding: new EdgeInsets.all(10.0),
+child: new Text("Row $i")),
+onTap: () {
+// 必须调用setState
+setState(() {
+widgets = new List.from(widgets);
+widgets.add(getRow(widgets.length + 1));
+print('row $i');
+});
+},
+);
+}
 ```
 
 ## [事件流是“向上”传递的，而状态流是“向下”传递的](https://flutterchina.club/widgets-intro/)
