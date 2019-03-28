@@ -372,7 +372,10 @@ Iterable<int> naturalsDownFrom(int n) sync* {
 }
 ```
 
-
+## 泛型
+常用的代表泛型的字母：
+E代表Element,元素；T代表Type,类型；K代表Key,键；V代表Value,值.
+泛型函数定义时，在函数名称后面必须有<>
 
 ## Isolates
 所有的 Dart 代码在 isolates 中运行而不是线程。 每个 isolate 都有自己的堆内存，并且确保每个 isolate 的状态都不能被其他 isolate 访问。
