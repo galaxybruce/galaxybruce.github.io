@@ -1,5 +1,4 @@
-#
-# 参考文章
+## 参考文章
 
 1. [Flutter中文网](https://flutterchina.club/)
 2. [flutter-io.cn](https://flutter-io.cn/)
@@ -63,10 +62,10 @@ Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程�
 url_launcher: ">=0.1.2 <0.2.0"
 collection: "^0.1.2"
 plugin1:
-git:
-url: "git://github.com/flutter/plugin1.git"
+    git:
+    url: "git://github.com/flutter/plugin1.git"
 plugin2:
-path: ../plugin2/
+    path: ../plugin2/
 ```
 ## 一切皆控件
 在Flutter中，所有功能都可以通过组合多个Widget来实现，包括对齐方式、按行排列、按列排列、网格排列甚至事件处理等等。在Flutter中“一切皆是控件”，通过组合、嵌套不同类型的控件，就可以构建出任意功能、任意复杂度的界面
@@ -84,15 +83,15 @@ path: ../plugin2/
 所以Flutter中不存在添加或删除组件，您可以传入一个函数，该函数返回一个widget给父项，并通过布尔值控制该widget的创建，可以理解成重新动态创建。
 ```
 body: new Center(
-child: _getToggleChild(),
+    child: _getToggleChild(),
 )
 
 _getToggleChild() {
-if (toggle) {
-return new Text('Toggle One');
-} else {
-return new MaterialButton(onPressed: () {}, child: new Text('Toggle Two'));
-}
+    if (toggle) {
+        return new Text('Toggle One');
+    } else {
+    return new MaterialButton(onPressed: () {}, child: new Text('Toggle Two'));
+    }
 }
 
 ```
@@ -115,18 +114,18 @@ Hot Reload通过将更新的源代码文件注入正在运行的Dart VM（虚拟
 
 ```
 Widget _buildSuggestions() {
-return new ListView.builder(
-// 该方法至少执行一次，哪怕列表是空的
-itemBuilder: (context, i) {
-final index = i ~/ 2;
-// 如果是建议列表中最后一个单词对
-if (index >= _suggestions.length) {
-// ...接着再生成10个单词对，然后添加到建议列表，不需要调用setState方法
-_suggestions.addAll(generateWordPairs().take(10));
-}
-return _buildRow(_suggestions[index]);
-}
-);
+    return new ListView.builder(
+        // 该方法至少执行一次，哪怕列表是空的
+        itemBuilder: (context, i) {
+            final index = i ~/ 2;
+            // 如果是建议列表中最后一个单词对
+            if (index >= _suggestions.length) {
+            // ...接着再生成10个单词对，然后添加到建议列表，不需要调用setState方法
+            _suggestions.addAll(generateWordPairs().take(10));
+        }
+        return _buildRow(_suggestions[index]);
+    }
+    );
 }
 
 ```
@@ -134,19 +133,19 @@ return _buildRow(_suggestions[index]);
 
 ```
 Widget getRow(int i) {
-return new GestureDetector(
-child: new Padding(
-padding: new EdgeInsets.all(10.0),
-child: new Text("Row $i")),
-onTap: () {
-// 必须调用setState
-setState(() {
-widgets = new List.from(widgets);
-widgets.add(getRow(widgets.length + 1));
-print('row $i');
-});
-},
-);
+    return new GestureDetector(
+        child: new Padding(
+        padding: new EdgeInsets.all(10.0),
+        child: new Text("Row $i")),
+            onTap: () {
+                // 必须调用setState
+                setState(() {
+                widgets = new List.from(widgets);
+                widgets.add(getRow(widgets.length + 1));
+                print('row $i');
+            });
+        },
+    );
 }
 ```
 
