@@ -42,7 +42,7 @@ export PATH=$PATH:~/android/flutter/bin
 Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程语言，从颜色和展示效果上看，使用的是 Material Design UI 理念。
 ![dart语言比较](../images/dart_lang_compare.png)
 
-## Flutter Widget框架概述
+## [Flutter Widget框架概述](https://flutterchina.club/widgets-intro/)
 1. Flutter Widget采用现代响应式框架构建，这是从 React 中获得的灵感，中心思想是用widget构建你的UI。
 2. 框架强制根widget覆盖整个屏幕。
 3. Flutter框架将依次构建这些widget，直到构建到最底层的子widget时，这些最低层的widget通常为RenderObject，它会计算并描述widget的几何形状。
@@ -50,8 +50,8 @@ Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程�
 
 ## 写UI的思路
 1. 整理页面需要哪些widget以及他们的嵌套关系
-2. 分析哪些widget需要把逻辑封装起来
-3. 需要封装起来widget是有状态的还是无状态的，一般来说外层的widget保持状态，内部的widget需要的数据通过构造函数传进来，然后再通过事件告诉父widget，原则是事件流是“向上”传递的，而状态流是“向下”传递的。
+2. 分析哪些widget需要把逻辑封装起来，widget一般不会继承，都是继承StatelessWidget或者StatefulWidget来组装各种基础widget。
+3. 需要封装起来widget是有状态的还是无状态的，一般来说外层的widget保持状态，内部的widget不需要保持状态，需要的数据通过构造函数传进来，然后再通过事件告诉父widget，原则是事件流是“向上”传递的，而状态流是“向下”传递的。
 4. 状态数据一般是保存在widget对应的State类中的变量上。
 5. 最后是具体些widget的时候了，怎么写查文档或者google。
 
