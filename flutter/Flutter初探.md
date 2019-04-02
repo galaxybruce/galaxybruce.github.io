@@ -47,8 +47,11 @@ Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程�
 2. 框架强制根widget覆盖整个屏幕。
 3. Flutter框架将依次构建这些widget，直到构建到最底层的子widget时，这些最低层的widget通常为RenderObject，它会计算并描述widget的几何形状。
 4. 无状态的widget，它将通过构造函数从父widget中接收到的值存储在**final**成员变量中，然后在build函数中使用它们。
+5. 如果要添加填充，边距，边框或背景色，请使用Container等容器类型的widget来设置（译者语：只有容器有这些属性）
+6. 在Flutter中，一个自定义widget通常是通过组合其它widget来实现的，而不是继承。
 
-## 写UI的思路
+
+## [写UI的思路](https://flutterchina.club/tutorials/layout/)
 1. 整理页面需要哪些widget以及他们的嵌套关系
 2. 分析哪些widget需要把逻辑封装起来，widget一般不会继承，都是继承StatelessWidget或者StatefulWidget来组装各种基础widget。
 3. 需要封装起来widget是有状态的还是无状态的，一般来说外层的widget保持状态，内部的widget不需要保持状态，需要的数据通过构造函数传进来，然后再通过事件告诉父widget，原则是事件流是“向上”传递的，而状态流是“向下”传递的。
@@ -154,3 +157,23 @@ Widget getRow(int i) {
 
 ## Scaffold
 Scaffold 是 Material library 中提供的一个widget, 它提供了默认的导航栏、标题和包含主屏幕widget树的body属性
+
+## 路由
+和Android相似，您可以在AndroidManifest.xml中声明您的Activities，在Flutter中，您可以将具有指定Route的Map传递到顶层MaterialApp实例
+
+```
+void main() {
+  runApp(new MaterialApp(
+    home: new MyAppHome(), // becomes the route named '/'
+    routes: <String, WidgetBuilder> {
+      '/a': (BuildContext context) => new MyPage(title: 'page A'),
+      '/b': (BuildContext context) => new MyPage(title: 'page B'),
+      '/c': (BuildContext context) => new MyPage(title: 'page C'),
+    },
+  ));
+}
+```
+然后，您可以通过Navigator来切换到命名路由的页面。
+```
+Navigator.of(context).pushNamed('/b');
+```
