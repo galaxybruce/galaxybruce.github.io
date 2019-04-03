@@ -7,6 +7,7 @@
 5. [Stack Overflow来处理“HOWTO”类型的问题](https://stackoverflow.com/tags/flutter)
 6. [Android各种场景如何在Flutter中处理](https://flutterchina.club/flutter-for-android/)
 7. [阿里出品的各种widget演示](https://github.com/alibaba/flutter-go)
+8. [flutter packages查找网站](https://pub.dartlang.org/flutter/packages/)
 
 ## 注意点
 
