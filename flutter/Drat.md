@@ -354,6 +354,15 @@ abstract class Walker {
 1. 用async 异步方法和 await 表达式实现异步编程
 2. 如果 await 无法正常使用，请确保是在一个 async 方法中。
 3. 在 await expression 中， expression 的返回值通常是一个 Future； 如果返回的值不是 Future，则 Dart 会自动把该值放到 Future 中返回。await expression 会阻塞住，直到需要的对象返回为止。
+4. 异步方法也可以匿名 
+```
+// 第二个参数是一个异步匿名函数，返回值是Future<dynamic>
+setUp(() {
+    channel.setMockMethodCallHandler((MethodCall methodCall) async {
+      return '42';
+    });
+  });
+```
 
 ## Generators
 当您需要延迟地生成一个值序列时，请考虑使用生成器函数。Dart内置支持两种生成器函数:

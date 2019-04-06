@@ -51,6 +51,8 @@ Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程�
 5. 如果要添加填充，边距，边框或背景色，请使用Container等容器类型的widget来设置（译者语：只有容器有这些属性）
 6. 在Flutter中，一个自定义widget通常是通过组合其它widget来实现的，而不是继承。
 
+## flutter零散知识点
+1. 在Android Studio中编辑Android平台代码之前，首先确保代码至少已经构建过一次（例如，从IntelliJ运行示例应用程序或在终端执行cd hello/example; flutter build apk）。
 
 ## [写UI的思路](https://flutterchina.club/tutorials/layout/)
 1. 整理页面需要哪些widget以及他们的嵌套关系
