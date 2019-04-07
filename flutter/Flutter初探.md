@@ -30,6 +30,7 @@ subprojects {
         compileOnly rootProject.findProject(":xxx")
     }
 ```
+8. 运行时反射，这在Flutter中是禁用的。运行时反射会干扰Dart的_tree shaking_。
 
 ## 安装
 怎样使用IDE看这里：https://flutterchina.club/using-ide/

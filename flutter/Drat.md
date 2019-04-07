@@ -54,7 +54,8 @@ var print = function(i){ console.log(i);};
 ## 重要概念
 1. 和 Java 不同的是，Dart 没有 public、 protected、 和 private 关键字。如果一个标识符以 (_) 开头，则该标识符 在库内是私有的。
 2. 没有指定类型的变量的类型为 dynamic。
-3. Dart支持顶级方法和变量，就是在类外部定义的方法（如main())和变量
+3. Dart支持顶级(也叫做全局)方法和变量，就是在类外部定义的方法（如main())和变量。
+4. Dart还可以在方法中定义方法 （嵌套方法或者局部方法）。
 
 ## 语法
 
