@@ -23,6 +23,13 @@ subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
 ```
+7. 如果在pubspec.yaml中引入的package是一个插件，会自动在项目根目录下生成.flutter-plugins文件并把插件项目注册进去，settings.gradle脚本会读取.flutter-plugins中的项目并include进来，其他module如果需要依赖添加如下代码即可  
+```
+  dependencies {
+          // 这里的xxx是.flutter-plugins中注册的名字
+        compileOnly rootProject.findProject(":xxx")
+    }
+```
 
 ## 安装
 怎样使用IDE看这里：https://flutterchina.club/using-ide/
