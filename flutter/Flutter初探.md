@@ -36,7 +36,7 @@ export PATH=$PATH:~/android/flutter/bin
 ```
 3. 运行 flutter doctor 命令，该命令检查您的环境并在终端窗口中显示报告，如是否安装Android SDK等
 4. 运行 flutter devices 命令以验证Flutter识别您连接的Android设备
-5. flutter create myapp命令创建一个最简单的flutter程序
+5. flutter create myapp命令创建一个最简单的flutter程序。要使用Kotlin或Swift，请使用-i和/或-a标志:flutter create -i swift -a kotlin myapp
 6. 在项目根目录下运行 flutter run 命令来运行应用程序
 7. 用android studio开发需要安装Flutter插件和Dart插件，File-New Flutter Project或者File Open打开已存在的flutter工程
 8. 在flutter工程中右击android目录-flutter-open android module in android studio可以在新的窗口中打开android部分代码
