@@ -15,6 +15,7 @@
 2. Dart是单线程执行模型，支持Isolates（在另一个线程上运行Dart代码的方式）、事件循环和异步编程。 除非您启动一个Isolate，否则您的Dart代码将在主UI线程中运行，并由事件循环驱动（译者语：和JavaScript一样）。
 3. Dart SDK已经在捆绑在Flutter里了，没有必要单独安装Dart。 flutter/bin/cache/dart-sdk
 4. 第一次运行一个flutter命令（如flutter doctor）时，它会下载它自己的依赖项并自行编译。以后再运行就会快得多。
+5. 从android studio打开已存在的flutter项目，右击“android"文件夹，flutter菜单不可以用时，可能是android文件夹下缺少”项目名称_android.iml“文件，如fluttertouchstone_android.iml，从其他项目copy一个来重命名下就行。
 
 ## 安装
 怎样使用IDE看这里：https://flutterchina.club/using-ide/
