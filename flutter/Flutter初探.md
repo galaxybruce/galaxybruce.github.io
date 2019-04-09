@@ -212,6 +212,10 @@ flutter module和普通flutter工程目录结构相同，也可以直接用andro
 1. android和ios目录变成隐藏的了
 2. android目中的app拆分成app和Flutter两个module
 
+注意点：
+1. .android目录下的app不能删除，不然执行./gradlew assembleRelease或者./gradlew assembleDebug命令生成的aar中没有assets。
+2. ./gradlew flutter:assembleDebug命令生成的aar中没有assets，需要去掉flutter。
+
 ## flutter.gradle文件
 Flutter工程的Android打包，其实只是在Android的Gradle任务中插入了一个flutter.gradle的任务，而这个flutter.gradle主要做了三件事：（这个文件可以在Flutter库中的[flutter/packages/flutter_tools/gradle]目录下能找到。） 
 1. 增加flutter.jar的依赖。 
