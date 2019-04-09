@@ -196,3 +196,12 @@ void main() {
 ```
 Navigator.of(context).pushNamed('/b');
 ```
+
+## flutter module
+创建方式有两种：
+1. 按照官网用命令创建：https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps
+2. 用android studio -> New Flutter Project -> 选择flutter module
+
+flutter module和普通flutter工程目录结构相同，也可以直接用android studio打开并且运行。区别：
+1. android和ios目录变成隐藏的了
+2. android目中的app拆分成app和Flutter两个module
