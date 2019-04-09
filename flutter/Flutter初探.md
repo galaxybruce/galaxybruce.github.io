@@ -9,6 +9,12 @@
 7. [阿里出品的各种widget演示](https://github.com/alibaba/flutter-go)
 8. [flutter packages查找网站](https://pub.dartlang.org/flutter/packages/)
 
+## 大厂们的解决方案
+1. [Flutter原理与实践](https://tech.meituan.com/2018/08/09/waimai-flutter-practice.html)
+2. [闲鱼技术](https://www.yuque.com/xytech/flutter/)
+3. [头条 Flutter 混合工程实践](https://mp.weixin.qq.com/s/wdbVVzZJFseX2GmEbuAdfA)
+
+
 ## 注意点
 
 1. 进入flutter目录，执行flutter doctor命令找不到命令错误，需要先设置全局环境变量才行。
@@ -205,3 +211,9 @@ Navigator.of(context).pushNamed('/b');
 flutter module和普通flutter工程目录结构相同，也可以直接用android studio打开并且运行。区别：
 1. android和ios目录变成隐藏的了
 2. android目中的app拆分成app和Flutter两个module
+
+## flutter.gradle文件
+Flutter工程的Android打包，其实只是在Android的Gradle任务中插入了一个flutter.gradle的任务，而这个flutter.gradle主要做了三件事：（这个文件可以在Flutter库中的[flutter/packages/flutter_tools/gradle]目录下能找到。） 
+1. 增加flutter.jar的依赖。 
+2. 插入Flutter Plugin的编译依赖。 
+3. 插入Flutter工程的编译任务，最终将产物（两个isolaate_snapshot文件、两个vm_snapshot文件和flutter_assets文件夹）拷贝到mergeAssets.outputDir，最终merge到APK的assets目录下。
