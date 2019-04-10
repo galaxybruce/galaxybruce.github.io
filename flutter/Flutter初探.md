@@ -10,7 +10,7 @@
 8. [flutter packages查找网站](https://pub.dartlang.org/flutter/packages/)
 
 ## 大厂们的解决方案
-1. [Flutter原理与实践](https://tech.meituan.com/2018/08/09/waimai-flutter-practice.html)
+1. [美团Flutter原理与实践](https://tech.meituan.com/2018/08/09/waimai-flutter-practice.html)
 2. [闲鱼技术](https://www.yuque.com/xytech/flutter/)
 3. [头条 Flutter 混合工程实践](https://mp.weixin.qq.com/s/wdbVVzZJFseX2GmEbuAdfA)
 
