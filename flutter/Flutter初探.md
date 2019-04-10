@@ -219,6 +219,7 @@ android {
     }
 }
 ```
+4. 如果项目依赖了插件，执行flutter get packages命令后，插件的本地代码会自动作为library注册到.flutter-plugins文件中，并且插件入口类会自动注册到io.flutter.plugins.GeneratedPluginRegistrant.java文件中。
 
 添加文档
 建议将以下文档添加到所有软件包：
