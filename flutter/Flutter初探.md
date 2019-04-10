@@ -95,6 +95,7 @@ plugin1:
 plugin2:
     path: ../plugin2/
 ```
+
 ## 一切皆控件
 在Flutter中，所有功能都可以通过组合多个Widget来实现，包括对齐方式、按行排列、按列排列、网格排列甚至事件处理等等。在Flutter中“一切皆是控件”，通过组合、嵌套不同类型的控件，就可以构建出任意功能、任意复杂度的界面
 
@@ -203,7 +204,7 @@ void main() {
 Navigator.of(context).pushNamed('/b');
 ```
 
-## flutter 插件 https://flutterchina.club/developing-packages/
+## 写flutter 插件 https://flutterchina.club/developing-packages/
 插件工程结构和普通的flutter工程结构一样，也可以直接运行，只是多了个example目录，example目录就是一个引用了插件的普通工程，实际上运行的就是这个工程。
 
 注意点：
@@ -246,3 +247,13 @@ Flutter工程的Android打包，其实只是在Android的Gradle任务中插入�
 1. 增加flutter.jar的依赖。 
 2. 插入Flutter Plugin的编译依赖。 
 3. 插入Flutter工程的编译任务，最终将产物（两个isolaate_snapshot文件、两个vm_snapshot文件和flutter_assets文件夹）拷贝到mergeAssets.outputDir，最终merge到APK的assets目录下。
+
+## dart依赖包
+1. 依赖包在pubspec.yaml中管理
+2. 下载的包存储在~/.pub-cache/hosted/pub.flutter-io.cn/english\_words-3.1.5/lib/
+3. 每个工程通过根目录下的.packages文件映射，如
+   english\_words:file:///Users/bruce/.pub-cache/hosted/pub.flutter-io.cn/english\_words-3.1.5/lib/
+4. 在pubspec.yaml文件中写好依赖后，通过pub get命令安装，或者IDE上的工具安装。
+5. 依赖版本号写成any，表示可以使用任何版本的包。
+6. 依赖git仓库时，可以使用ref参数将依赖关系固定到特定的git commit，branch或tag。
+
