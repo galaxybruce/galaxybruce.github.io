@@ -212,7 +212,7 @@ Navigator.of(context).pushNamed('/b');
 3. 插件或者package可以像普通的flutter工程一样，在pubspec.yam中添加对其他插件或者package的依赖。如果插件需要调用依赖的插件的特定于平台的API，那么需要在插件的特定平台的build.gradle中添加依赖  
 ```
 android {
-    // lines skipped
+    // url_launcher是依赖的插件的名称
     dependencies {
         provided rootProject.findProject(":url_launcher")
     }
