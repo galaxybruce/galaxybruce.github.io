@@ -74,8 +74,7 @@ Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程�
 6. 在Flutter中，一个自定义widget通常是通过组合其它widget来实现的，而不是继承。
 
 ## flutter零散知识点
-1. 在Android Studio中编辑Android平台代码之前，首先确保代码至少已经构建过一次（例如，从IntelliJ运行示例应用程序或在终端执行cd hello/example; flutter build apk）。
-2. 当你在添加一个包后首次运行（IntelliJ中的’Packages Get’）flutter packages get，Flutter将找到包的版本保存在pubspec.lock。
+1. 当你在添加一个包后首次运行（IntelliJ中的’Packages Get’）flutter packages get，Flutter将找到包的版本保存在pubspec.lock。
 
 ## [写UI的思路](https://flutterchina.club/tutorials/layout/)
 1. 整理页面需要哪些widget以及他们的嵌套关系
@@ -204,12 +203,27 @@ void main() {
 Navigator.of(context).pushNamed('/b');
 ```
 
+## flutter 插件 https://flutterchina.club/developing-packages/
+
+
+注意点：
+1. 在Android Studio中编辑Android平台代码之前，首先确保代码至少已经构建过一次（例如，从IntelliJ运行示例应用程序或在终端执行cd hello/example; flutter build apk）。
+
+添加文档
+建议将以下文档添加到所有软件包：
+1. README.md:介绍包的文件
+2. CHANGELOG.md 记录每个版本中的更改
+3. LICENSE 包含软件包许可条款的文件
+4. 所有公共API的API文档 (详情见下文)
+在发布软件包时，API文档会自动生成并发布到dartdocs.org。如果您希望在本地生成API文档，进入插件项目根目录，请使用以下命令：dartdoc
+
+
 ## flutter module
 创建方式有两种：
 1. 按照官网用命令创建：https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps
 2. 用android studio -> New Flutter Project -> 选择flutter module
 
-flutter module和普通flutter工程目录结构相同，也可以直接用android studio打开并且运行。区别：
+flutter module和普通flutter工程目录结构相同，也可以直接用android studio打开并且运行(.android目录也可以直接用android studio打开)。区别：
 1. android和ios目录变成隐藏的了
 2. android目中的app拆分成app和Flutter两个module
 
