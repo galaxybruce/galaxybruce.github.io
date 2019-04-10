@@ -204,11 +204,20 @@ Navigator.of(context).pushNamed('/b');
 ```
 
 ## flutter 插件 https://flutterchina.club/developing-packages/
-
+插件工程结构和普通的flutter工程结构一样，也可以直接运行，只是多了个example目录，example目录就是一个引用了插件的普通工程，实际上运行的就是这个工程。
 
 注意点：
 1. 在Android Studio中编辑Android平台代码之前，首先确保代码至少已经构建过一次（例如，从IntelliJ运行示例应用程序或在终端执行cd hello/example; flutter build apk）。
 2. 由于android studio打开的插件工程是flutter工程，不是android工程，所以android/ios目录下的代码无法识别，显示是错误的。所以编辑插件中平台部分的代码需要用android studio重新打开（右击项目根目录 Flutter-open android module in android studio）,实际上打开的是example/android目录。
+3. 插件或者package可以像普通的flutter工程一样，在pubspec.yam中添加对其他插件或者package的依赖。如果插件需要调用依赖的插件的特定于平台的API，那么需要在插件的特定平台的build.gradle中添加依赖  
+```
+android {
+    // lines skipped
+    dependencies {
+        provided rootProject.findProject(":url_launcher")
+    }
+}
+```
 
 添加文档
 建议将以下文档添加到所有软件包：
