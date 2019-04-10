@@ -253,7 +253,7 @@ Flutter工程的Android打包，其实只是在Android的Gradle任务中插入�
 2. 下载的包存储在~/.pub-cache/hosted/pub.flutter-io.cn/english\_words-3.1.5/lib/
 3. 每个工程通过根目录下的.packages文件映射，如
    english\_words:file:///Users/bruce/.pub-cache/hosted/pub.flutter-io.cn/english\_words-3.1.5/lib/
-4. 在pubspec.yaml文件中写好依赖后，通过pub get命令安装，或者IDE上的工具安装。
+4. 在pubspec.yaml文件中写好依赖后，通过flutter packages get命令安装，或者IDE上的工具安装。
 5. 依赖版本号写成any，表示可以使用任何版本的包。
 6. 依赖git仓库时，可以使用ref参数将依赖关系固定到特定的git commit，branch或tag。
 
