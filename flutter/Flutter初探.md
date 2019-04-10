@@ -75,6 +75,7 @@ Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程�
 
 ## flutter零散知识点
 1. 在Android Studio中编辑Android平台代码之前，首先确保代码至少已经构建过一次（例如，从IntelliJ运行示例应用程序或在终端执行cd hello/example; flutter build apk）。
+2. 当你在添加一个包后首次运行（IntelliJ中的’Packages Get’）flutter packages get，Flutter将找到包的版本保存在pubspec.lock。
 
 ## [写UI的思路](https://flutterchina.club/tutorials/layout/)
 1. 整理页面需要哪些widget以及他们的嵌套关系
