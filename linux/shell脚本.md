@@ -27,9 +27,29 @@ shell一般是指linux下的shell
 /bin/php test.php
 这种方式运行的脚本，不需要在第一行指定解释器信息，写了也没用。
 
+## 当前shell的配置文件
+echo $SHELL 查看当前shell版本, 使用的shell不同, 对应的配置文件也不一样
+
+* 如果是bash
+```
+vim ~/.bash_profile
+//或者
+vim ~/.bashrc
+```
+* 如果是zsh
+```
+vim ~/.zshrc
+```
+PS.通过如下命令可切换shell
+```
+//切换到zsh
+chsh -s `which zsh` 
+//切换到bash
+chsh -s `which bash`
+```
 ## Shell 文件包含
 在文件顶部用如下代码
-. filePath   #注意点号(.)和文件名中间有一空格
+. filePath #注意点号(.)和文件名中间有一空格
 或
 source filePath
 
@@ -44,7 +64,7 @@ source filePath
 myUrl="http://www.google.com"
 readonly myUrl
 myUrl="http://www.runoob.com"
-```   
+```
 
 ### 删除变量
 使用 unset 命令可以删除变量，不可以删除readonly变量。语法：
@@ -74,7 +94,7 @@ echo ${array_name[@]}
 ```
 ### 获取数组的长度
 ```
-取得数组元素的个数  
+取得数组元素的个数
 length=${#array_name[@]}
 或者length=${#array_name[*]}
 取得数组单个元素的长度
@@ -82,7 +102,7 @@ lengthn=${#array_name[n]}
 ```
 
 ## Shell传递参数
-在命令后面用空格分隔参数，脚本中用$n接收，$0表示脚本文件名。    
+在命令后面用空格分隔参数，脚本中用$n接收，$0表示脚本文件名。
 ```
 ./test.sh 1 2 3
 echo "Shell 传递参数实例！";
@@ -108,11 +128,11 @@ xxxDebug '1.6.0'
 1. 表达式和运算符之间要有空格，例如 2+2 是不对的，必须写成 2 + 2
 2. 完整的表达式要被反引号包含，注意这个字符不是常用的单引号，在 Esc 键下边。不过推荐用 \$() 代替 \`\`
 3. 原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr，expr 最常用
-   val=\`expr 2 + 2\`
-   echo "两数之和为 : $val"
+val=\`expr 2 + 2\`
+echo "两数之和为 : $val"
 4. 条件表达式要放在方括号之间，并且要有空格，例如: [\$a==\$b] 是错误的，必须写成 [ \$a == \$b ]
 5. 乘号(\*)前边必须加反斜杠(\\)才能实现乘法运算；
-   val=\`expr $a \\\* $b\`
+val=\`expr $a \\\* $b\`
 
 表达式四种写法：
 val=\`expr 2 + 2\`
@@ -123,7 +143,6 @@ var=\$[2 + 2]
 （1）\${a} 变量a的值, 在不引起歧义的情况下可以省略大括号。
 （2）\$(cmd) 命令替换，和\`cmd\`效果相同，结果为shell命令cmd的输，过某些Shell版本不支持\$()形式的命令替换, 如tcsh。
 （3）\$((expression)) 和\`exprexpression\`效果相同, 计算数学表达式exp的数值, 其中exp只要符合C语言的运算规则即可, 甚至三目运算符和逻辑表达式都可以计算。
-   
 ## 字符串运算符
 字符串有专用的运算符 用来计算字符串是否相等、长度是否为0、字符串是否为空等
 
@@ -132,7 +151,7 @@ var=\$[2 + 2]
 
 ## Shell echo命令
 echo输出的字符串总结
-|  | 能否引用变量 | 能否引用转移符 | 能否引用文本格式符(如：换行符、制表符) |
+| | 能否引用变量 | 能否引用转移符 | 能否引用文本格式符(如：换行符、制表符) |
 | --- | --- | --- | --- |
 | 单引号 | 否 | 否 | 否 |
 | 双引号 | 能 | 能 | 能 |
@@ -140,26 +159,31 @@ echo输出的字符串总结
 显示结果定向至文件
 echo "It is a test" > myfile
 原样输出字符串，不进行转义或取变量(用单引号)
-echo '$name\"'    \#输出\$name\"
+echo '$name\"' \#输出\$name\"
 显示命令执行结果
-echo \`date\`   \#输出日期Thu Jul 24 10:08:46 CST 2014
+echo \`date\` \#输出日期Thu Jul 24 10:08:46 CST 2014
 
 ## 函数
 略
 ## 输入/输出重定向
 略
 
+## 常用命令
+1. echo $SHELL 查看当前shell版本
+2. help [命令] 查看某个命令的用法
+
+
 ## 常用操作案例
-1. 美团外卖操作so库  
+1. 美团外卖操作so库
 ```
 cd $FLUTTER_ROOT/bin/cache/artifacts/engine
 for arch in android-arm android-arm-profile android-arm-release; do
-  pushd $arch
-  cp flutter.jar flutter-armeabi-v7a.jar # 备份
-  unzip flutter.jar lib/armeabi-v7a/libflutter.so
-  mv lib/armeabi-v7a lib/armeabi
-  zip -d flutter.jar lib/armeabi-v7a/libflutter.so
-  zip flutter.jar lib/armeabi/libflutter.so
-  popd
+pushd $arch
+cp flutter.jar flutter-armeabi-v7a.jar # 备份
+unzip flutter.jar lib/armeabi-v7a/libflutter.so
+mv lib/armeabi-v7a lib/armeabi
+zip -d flutter.jar lib/armeabi-v7a/libflutter.so
+zip flutter.jar lib/armeabi/libflutter.so
+popd
 done
 ```
