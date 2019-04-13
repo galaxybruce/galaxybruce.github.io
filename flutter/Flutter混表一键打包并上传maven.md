@@ -43,8 +43,42 @@ plugins.each { name, path ->
     gradle.project(":$name").projectDir = pluginDirectory
 }
 ```
-还有一个重要的脚本/android/flutter/packages/flutter_tools/gradle/flutter.gradle，
+这些工程是如何添加到flutter module依赖中的呢？还有一个重要的脚本/android/flutter/packages/flutter_tools/gradle/flutter.gradle，代码如下
 
+```
+File pluginsFile = new File(project.projectDir.parentFile.parentFile, '.flutter-plugins')
+        Properties plugins = readPropertiesIfExist(pluginsFile)
+
+        plugins.each { name, _ ->
+            def pluginProject = project.rootProject.findProject(":$name")
+            if (pluginProject != null) {
+                project.dependencies {
+                    if (project.getConfigurations().findByName("implementation")) {
+                        implementation pluginProject
+                    } else {
+                        compile pluginProject
+                    }
+                }
+		pluginProject.afterEvaluate {
+                    pluginProject.android.buildTypes {
+                        profile {
+                            initWith debug
+                        }
+                    }
+		}
+                pluginProject.afterEvaluate this.&addFlutterJarCompileOnlyDependency
+            } else {
+                project.logger.error("Plugin project :$name not found. Please update settings.gradle.")
+            }
+        }
+```
+这些插件都被添加到flutter module中，所以如果是自己的插件中依赖了第三方的插件，只要添加compileOnlye或者provide依赖就行
+
+```
+dependencies {
+        compileOnly rootProject.findProject(":url_launcher")
+    }
+```
 
 
 
