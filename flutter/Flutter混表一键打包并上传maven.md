@@ -15,9 +15,9 @@ flutter工程目前有四种形式：
 4. 即使上面三个问题都解决了，用起来还是很繁琐，有没有只要执行一个命令就能把所有的流程串起来？
 我们用shell脚本把gradle命令串起来就能达到自动化的效果，也就解决了第四个问题。下面我来和盆友们一步一步来分享我的处理方法。
 
-### 一、如何把flutter打成aar?
+### 一、有哪些代码要打成aar？
 
-要把flutter打成aar，我们得知道flutter module依赖了哪些插件，包括我们自己写的以及第三方的。只要在pubspec.ymal中配置了插件依赖，执行flutter packages get命令就会flutter module根目录下生成一个.flutter-plugins文件，里面按照key-value的形式记录所有依赖的插件（包括级联依赖的），key是插件的名称，value是插件工程所在的目录，这里要注意的是第三方的插件也是先下载的本地（mac上的目录是~/.pub-cache/hosted/pub.flutter-io.cn/）再引用该地址。
+要把flutter module打成aar，我们得知道flutter module依赖了哪些插件，包括我们自己写的以及第三方的。只要在pubspec.ymal中配置了插件依赖，执行flutter packages get命令就会flutter module根目录下生成一个.flutter-plugins文件，里面按照key-value的形式记录所有依赖的插件（包括级联依赖的），key是插件的名称，value是插件工程所在的目录，这里要注意的是第三方的插件也是先下载的本地（mac上的目录是~/.pub-cache/hosted/pub.flutter-io.cn/）再引用该地址。
 
 ```
 // 自己开发的插件
@@ -80,7 +80,117 @@ dependencies {
     }
 ```
 
+### 二、把所有的依赖工程分别打成aar并上传到maven
+我们也是通过读取.flutter-plugins文件来把所有的依赖都打成aar并上传到maven。
+```
+for line in $(cat .flutter-plugins)
+do
+    plugin_name=${line%%=*}
+    plugin_path=${line##*=}
+    echo '==Build and publish plugin: ['${plugin_name}']='${plugin_path}
 
+    cd .android
+
+    # 在使用变量比较字符串之前，最好在判断之前加一个判断变量是否为空  或者使用双引号将其括起来，不然会出现异常[: ==: unary operator expected
+    if [ "$debugMode" == "debug" ]
+    then
+       echo "==start build debug aar for plugin ["${plugin_name}"]"
+       ./gradlew :${plugin_name}:clean :${plugin_name}:assembleDebug -PfGroupId=${fGroupId} -PfArtifactId=${plugin_name} -PfVersion=${fVersion}
+    else
+        echo "==start build release aar for plugin ["${plugin_name}"]"
+        # uploadArchives命令自动回生成release模式的aar，不用执行该命令
+        ./gradlew :${plugin_name}:clean :${plugin_name}:assembleRelease -PfGroupId=${fGroupId} -PfArtifactId=${plugin_name} -PfVersion=${fVersion}
+    fi
+
+    echo "==start upload maven for plugin ["${plugin_name}"]"
+    ./gradlew :${plugin_name}:uploadArchives -PfGroupId=${fGroupId} -PfArtifactId=${plugin_name} -PfVersion=${fVersion}
+
+    echo -e "\n"
+    cd ../
+done
+```
+上传到maven，那肯定是要指定每个maven的groupId:artifactId:version，大家可能注意到上面的代码中，每个./gradlew后面都有三个参数-PfGroupId=${fGroupId} -PfArtifactId=${plugin_name} -PfVersion=${fVersion}，groupId和version是执行shell命令的时候传进来的。为了保证依赖的正确性和一致性，每次打包我让所有的依赖的group和version都是一样的。也就是说不管第三方的插件原来的group和version是什么，我这里都统一指定成我们公司内部的group和version，这也会导致另一个问题，第三方的插件过多的话，导致我们的maven库上库也变多了，能不能再给group多一级收敛一下呢，比如xxx.xxx.thirdparty，是可以的这个在.android/build.gradle中处理。
+
+```
+// 在project.afterEvaluate中读取group version等参数并apply上传maven脚本
+subprojects {
+    project.afterEvaluate {
+        project.plugins.withId('com.android.library') {
+            if(project.name != 'app') {
+                // 读取shell脚本中运行./gradlew xxx命令时传递的参数
+                project.group = project.rootProject.hasProperty('gArtGroupId') ? project.rootProject.ext.gArtGroupId : null
+                project.version = project.rootProject.hasProperty('gArtVersion') ? project.rootProject.ext.gArtVersion : null
+
+                // 第三方的包在group里加上.thirdparty
+                if(project.projectDir.absolutePath.indexOf("pub-cache/hosted/pub.flutter-io.cn") >= 0
+                    || project.projectDir.absolutePath.indexOf("pub-cache\\hosted\\") >= 0) {
+                    project.group += ".thirdparty"
+                }
+
+                println "==group: $project.group:$project.name:$project.version"
+
+                // 给每个module添加上传maven脚本
+                def mavenScriptPath = project.rootProject.file('../android_flutter_maven.gradle')
+                project.apply from: mavenScriptPath
+            }
+        }
+    }
+}
+
+// 很重要，用来覆盖各个自依赖中的group和version
+// ./gradlew clean assembleRelease -PfGroupId=${fGroupId} -PfArtifactId=${fArtifactId} -PfVersion=${fVersion}
+// 执行了这个命令，根目录的build.gradle就会执行，这时候把参数设置到project.rootProject.ext，后面各个subProject就可以拿到
+final def artGroupId = project.hasProperty('fGroupId') && project.fGroupId ? project.fGroupId : null
+final def artVersion = project.hasProperty('fVersion') && project.fVersion ? project.fVersion : null
+project.rootProject.ext {
+    gArtGroupId = artGroupId
+    gArtVersion = artVersion
+}
+```
+
+三、把flutter module打包成aar并上传到maven
+上面所有的依赖都上传到maven了，现在可以把flutter module上传到maven了，代码基本上和处理依赖时一样
+
+```
+###### 3.上传flutterModule
+cd .android
+
+if [ "$debugMode" == "debug" ]
+then
+   echo "==start build debug aar for [moduleflutter]"
+   ./gradlew clean assembleDebug -PfGroupId=${fGroupId} -PfArtifactId=${fArtifactId} -PfVersion=${fVersion} -PfModule=true
+else
+    echo "==start build release aar for [moduleflutter]"
+    # uploadArchives命令自动回生成release模式的aar，不用执行该命令
+    ./gradlew clean assembleRelease -PfGroupId=${fGroupId} -PfArtifactId=${fArtifactId} -PfVersion=${fVersion} -PfModule=true
+fi
+
+echo "==start upload maven for [moduleflutter]"
+./gradlew :flutter:uploadArchives -PfGroupId=${fGroupId} -PfArtifactId=${fArtifactId} -PfVersion=${fVersion} -PfModule=true
+
+cd ../
+```
+
+四、切换源码和maven依赖变量设置
+为了方便测试，我在.android/gradle.properties中设置了两个变量分别控制源码依赖和maven依赖，以及打本地maven还是远程maven.
+gradle.properties
+```
+#0=>maven 1=>source
+FLUTTER_SOURCE=1
+#0=>clound 1=>local
+CLOUND_MAVEN=1
+```
+.android/app/build.gradle
+```
+dependencies {
+
+    if ("1".equals(FLUTTER_SOURCE)) {
+        api project(':flutter')
+    } else {
+        api('com.xxx:kwmoduleflutter:0.0.5-SNAPSHOT')
+    }
+}
+```
 
 
 

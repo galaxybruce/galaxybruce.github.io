@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* Flutter
+* [Flutter](flutter.md)
   * [Flutter初探](flutter/Flutter初探.md)
   * [Flutter混编一键打包并上传maven](flutter/Flutter混表一键打包并上传maven.md)
   * [Dart](flutter/Drat.md)
