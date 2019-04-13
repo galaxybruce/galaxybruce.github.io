@@ -26,6 +26,7 @@ helloplugin=/Users/bruce/work/kidswant/sourcecode/Projects_Android/git/flutter/h
 url_launcher=/Users/bruce/.pub-cache/hosted/pub.flutter-io.cn/url_launcher-5.0.2/
 ```
 flutter也是通过在编译阶段读取该文件动态在settings.gradle中添加include这些插件工程，flutter普通工程和flutter module中都有一段这个脚本（flutter module中的脚本在.android/include_flutter.groovy）
+
 ```
 gradle.include ':flutter'
 gradle.project(':flutter').projectDir = new File(flutterProjectRoot, '.android/Flutter')
@@ -42,7 +43,7 @@ plugins.each { name, path ->
     gradle.project(":$name").projectDir = pluginDirectory
 }
 ```
-
+还有一个重要的脚本/android/flutter/packages/flutter_tools/gradle/flutter.gradle，
 
 
 
