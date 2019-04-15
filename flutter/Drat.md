@@ -380,7 +380,7 @@ E代表Element,元素；T代表Type,类型；K代表Key,键；V代表Value,值.
 泛型函数定义时，在函数名称后面必须有<>
 
 ## Isolates
-isolate是有自己的内存和单线程控制的运行实体。
+[isolate是有自己的内存和单线程控制的运行实体](https://www.yuque.com/xytech/flutter/kwoww1)。
 所有的 Dart 代码在 isolates 中运行而不是线程。 每个 isolate 都有自己的堆内存，并且确保每个 isolate 的状态都不能被其他 isolate 访问。
 Dart是单线程执行模型，支持Isolates（在另一个线程上运行Dart代码的方式）、事件循环和异步编程。 除非您启动一个Isolate，否则您的Dart代码将在主UI线程中运行，并由事件循环驱动（译者语：和JavaScript一样）。
 
