@@ -76,7 +76,7 @@ plugins.each { name, _ ->
 
 ```
 dependencies {
-compileOnly rootProject.findProject(":url_launcher")
+    compileOnly rootProject.findProject(":url_launcher")
 }
 ```
 
@@ -115,27 +115,27 @@ PS:这里有个比较坑的地方就是，不管使我们自己创建的flutter 
 ```
 // 在project.afterEvaluate中读取group version等参数并apply上传maven脚本
 subprojects {
-project.afterEvaluate {
-project.plugins.withId('com.android.library') {
-if(project.name != 'app') {
-// 读取shell脚本中运行./gradlew xxx命令时传递的参数
-project.group = project.rootProject.hasProperty('gArtGroupId') ? project.rootProject.ext.gArtGroupId : null
-project.version = project.rootProject.hasProperty('gArtVersion') ? project.rootProject.ext.gArtVersion : null
+    project.afterEvaluate {
+    project.plugins.withId('com.android.library') {
+        if(project.name != 'app') {
+            // 读取shell脚本中运行./gradlew xxx命令时传递的参数
+            project.group = project.rootProject.hasProperty('gArtGroupId') ? project.rootProject.ext.gArtGroupId : null
+            project.version = project.rootProject.hasProperty('gArtVersion') ? project.rootProject.ext.gArtVersion : null
 
-// 第三方的包在group里加上.thirdparty
-if(project.projectDir.absolutePath.indexOf("pub-cache/hosted/pub.flutter-io.cn") >= 0
+            // 第三方的包在group里加上.thirdparty
+            if(project.projectDir.absolutePath.indexOf("pub-cache/hosted/pub.flutter-io.cn") >= 0
 || project.projectDir.absolutePath.indexOf("pub-cache\\hosted\\") >= 0) {
-project.group += ".thirdparty"
-}
+                project.group += ".thirdparty"
+            }
 
-println "==group: $project.group:$project.name:$project.version"
+            println "==group: $project.group:$project.name:$project.version"
 
-// 给每个module添加上传maven脚本
-def mavenScriptPath = project.rootProject.file('../android_flutter_maven.gradle')
-project.apply from: mavenScriptPath
-}
-}
-}
+            // 给每个module添加上传maven脚本
+            def mavenScriptPath = project.rootProject.file('../android_flutter_maven.gradle')
+            project.apply from: mavenScriptPath
+        }
+    }
+    }
 }
 
 // 很重要，用来覆盖各个自依赖中的group和version
@@ -144,8 +144,8 @@ project.apply from: mavenScriptPath
 final def artGroupId = project.hasProperty('fGroupId') && project.fGroupId ? project.fGroupId : null
 final def artVersion = project.hasProperty('fVersion') && project.fVersion ? project.fVersion : null
 project.rootProject.ext {
-gArtGroupId = artGroupId
-gArtVersion = artVersion
+    gArtGroupId = artGroupId
+    gArtVersion = artVersion
 }
 ```
 
@@ -186,10 +186,10 @@ CLOUND_MAVEN=1
 dependencies {
 
 if ("1".equals(FLUTTER_SOURCE)) {
-api project(':flutter')
+    api project(':flutter')
 } else {
-现有的工程中引用flutter module库
-api('com.xxx:kwmoduleflutter:0.0.5-SNAPSHOT')
+    // 现有的工程中引用flutter module库
+    api('com.xxx:kwmoduleflutter:0.0.5-SNAPSHOT')
 }
 }
 ```
