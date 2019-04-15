@@ -34,13 +34,13 @@ gradle.project(':flutter').projectDir = new File(flutterProjectRoot, '.android/F
 def plugins = new Properties()
 def pluginsFile = new File(flutterProjectRoot, '.flutter-plugins')
 if (pluginsFile.exists()) {
-pluginsFile.withReader('UTF-8') { reader -> plugins.load(reader) }
+    pluginsFile.withReader('UTF-8') { reader -> plugins.load(reader) }
 }
 
 plugins.each { name, path ->
-def pluginDirectory = flutterProjectRoot.toPath().resolve(path).resolve('android').toFile()
-gradle.include ":$name"
-gradle.project(":$name").projectDir = pluginDirectory
+    def pluginDirectory = flutterProjectRoot.toPath().resolve(path).resolve('android').toFile()
+    gradle.include ":$name"
+    gradle.project(":$name").projectDir = pluginDirectory
 }
 ```
 这些工程是如何添加到flutter module依赖中的呢？还有一个重要的脚本/android/flutter/packages/flutter_tools/gradle/flutter.gradle，代码如下
