@@ -314,6 +314,9 @@ assert(identical(a, b)); // They are the same instance!
 ```
 // 构造函数返回子类实例
 const factory Key(String value) = ValueKey<String>;
+
+// LinkedHashMap是抽象类
+factory Map.from(Map other) = LinkedHashMap<K, V>.from;
 ```
 这里用到了factory redirect，等效于
 ```
