@@ -311,6 +311,7 @@ assert(identical(a, b)); // They are the same instance!
 1. 如果想从缓存中获取一个实例并返回，或者返回一个子类型的实例，可以用一个工厂构造函数。
 2. 如果你希望你的抽象类 是可实例化的，则定义一个工厂构造函数。
 3. [factory redirect](https://segmentfault.com/a/1190000011276853)
+
 ```
 // 构造函数返回子类实例
 const factory Key(String value) = ValueKey<String>;
