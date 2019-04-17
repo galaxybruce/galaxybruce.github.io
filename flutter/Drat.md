@@ -42,6 +42,7 @@ var print = (i){ console.log(i);};
 2. 虽然可以用var不指定类型声明变量的方式，建议指明类型可以更加清晰的表达你的意图。 IDE 编译器等工具有可以使用类型来更好的帮助你， 可以提供代码补全、提前发现 bug 等功能。
 3. stagehandle需要设置环境变量：export PATH="$PATH":"$HOME/.pub-cache/bin"
 4. 新建实例时可以去掉关键字new
+5. 空函数体的构造函数 {}，可以直接用;号替代，也就是说没有具体函数体的构造函数可以使用分号结尾。
 
 ## 重要概念
 1. 和 Java 不同的是，Dart 没有 public、 protected、 和 private 关键字。如果一个标识符以 (_) 开头，则该标识符 在库内是私有的。
@@ -291,6 +292,9 @@ main() {
 }
 ```
 
+### 默认构造函数
+默认构造函数就是用类名称命名的构造函数，只能有一个默认构造函数，哪怕修改参数列表也不行，之后你只能定义命名构造函数了。
+
 ### 常量构造函数
 有些类提供了常量构造函数。使用常量构造函数 可以创建编译时常量，要使用常量构造函数只需要用 const 替代 new 即可：  
 ```
@@ -302,8 +306,21 @@ var a = const ImmutablePoint(1, 1);
 var b = const ImmutablePoint(1, 1);
 assert(identical(a, b)); // They are the same instance!
 ```
-### 隐式接口
 
+### factory构造函数
+1. 如果想从缓存中获取一个实例并返回，或者返回一个子类型的实例，可以用一个工厂构造函数。
+2. 如果你希望你的抽象类 是可实例化的，则定义一个工厂构造函数。
+3. [factory redirect](https://segmentfault.com/a/1190000011276853)
+```
+// 构造函数返回子类实例
+const factory Key(String value) = ValueKey<String>;
+```
+这里用到了factory redirect，等效于
+```
+const factory Key(String value) => new ValueKey<String>(value);
+```
+
+### 隐式接口
 Dart是没有interface这种东西的，但并不以为着这门语言没有接口，事实上，Dart任何一个类都是接口，你可以实现任何一个类，只需要重写那个类里面的所有具体方法。每个类都隐式的定义了一个包含所有实例成员的接口， 并且这个类实现了这个接口。如果你想 创建类 A 来支持 类 B 的 api，而不想继承 B 的实现， 则类 A 应该实现 B 的接口。就是说任何class可以被当做interface被其他用implement关键字实现，与extends关键字不同的是，实现的方法中不能调用super。
 
 ### 使用库
