@@ -60,6 +60,7 @@ export PATH=$PATH:~/android/flutter/bin
 1. flutter channel 查看flutter当前使用的分支master还是stable
 2. 要切换分支，请使用flutter channel beta 或 flutter channel master
 3. [升级 Flutter相关命令](https://flutterchina.club/upgrading/)
+4. flutter devices，查看Flutter识别您连接的Android设备
 
 ## flutter框架开发语言
 Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程语言，从颜色和展示效果上看，使用的是 Material Design UI 理念。
