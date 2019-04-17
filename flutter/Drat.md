@@ -15,7 +15,7 @@
 函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！,如：
 
 ```
-var print = function(i){ console.log(i);};
+var print = (i){ console.log(i);};
 [1,2,3].forEach(print);
 ```
 
