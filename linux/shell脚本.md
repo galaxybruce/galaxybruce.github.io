@@ -187,3 +187,11 @@ zip flutter.jar lib/armeabi/libflutter.so
 popd
 done
 ```
+
+2. [xargs将搜索到文件更换文件名或者移动目录](https://www.cnblogs.com/chyingp/p/linux-command-xargs.html)
+```
+// 将所有的.js结尾的文件，都加上.backup后缀
+ls *.js | xargs -t -I '{}' mv {} {}.backup
+// 将7天前的日志备份到特定目录
+find . -mtime +7 | xargs -I '{}' mv {} /tmp/otc-svr-logs/
+```
