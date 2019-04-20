@@ -206,7 +206,7 @@ void main() {
 Navigator.of(context).pushNamed('/b');
 ```
 
-## 写flutter 插件 https://flutterchina.club/developing-packages/
+## [写flutter 插件](https://flutterchina.club/developing-packages/)
 插件工程结构和普通的flutter工程结构一样，也可以直接运行，只是多了个example目录，example目录就是一个引用了插件的普通工程，实际上运行的就是这个工程。
 
 注意点：
