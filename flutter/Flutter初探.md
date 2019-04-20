@@ -234,7 +234,7 @@ android {
 
 ## flutter module
 创建方式有两种：
-1. 按照官网用命令创建：https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps
+1. [按照官网用命令创建](https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps)
 2. 用android studio -> New Flutter Project -> 选择flutter module
 
 flutter module和普通flutter工程目录结构相同，也可以直接用android studio打开并且运行(.android目录也可以直接用android studio打开)。区别：
