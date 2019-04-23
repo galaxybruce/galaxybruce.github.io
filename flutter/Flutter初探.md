@@ -273,8 +273,16 @@ Mobile平台上面每一个Engine实例启动的时候会为UI，GPU，IO Runner
 2. --profile模式可以关闭除Observatory之外所有调试辅助工具的。
 3. 当调试布局问题时，关键要看的是size和constraints字段。约束沿着树向下传递，尺寸向上传递。
 
-注意点：
+注意点:
+
 1. 只有通过android studio或者vs code直接运行才能断点调试，经过实践证明flutter attach不能在IDE中点断调试。
+
+
+## 开发工具VSCode
+参考文章:
+
+1. [Flutter VSCode](https://flutter.dev/docs/development/tools/vs-code)
+2. [使用VSCode开发Flutter](https://juejin.im/post/5c19f4b551882543871d62fc)
 
 
 
