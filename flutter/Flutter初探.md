@@ -266,3 +266,14 @@ Flutter工程的Android打包，其实只是在Android的Gradle任务中插入�
 多个Engine实例共享同一个Dart VM，只是不同Engine实例加载的代码跑在各自独立的Isolate。
 Flutter Engine自己不创建管理线程，Flutter Engine线程的创建和管理是由embedder负责的。
 Mobile平台上面每一个Engine实例启动的时候会为UI，GPU，IO Runner各自创建一个新的线程。所有Engine实例共享同一个Platform Runner和线程。
+
+
+## [调试](https://flutterchina.club/debugging/)
+1. 在开发过程中，强烈建议您使用Flutter的“调试”模式，有时也称为“checked”模式，在这种模式下，Dart assert语句被启用，并且Flutter框架使用它来执行许多运行时检查来验证是否违反一些不可变的规则。
+2. --profile模式可以关闭除Observatory之外所有调试辅助工具的。
+3. 当调试布局问题时，关键要看的是size和constraints字段。约束沿着树向下传递，尺寸向上传递。
+
+
+
+
+
