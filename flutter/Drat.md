@@ -309,6 +309,7 @@ assert(identical(a, b)); // They are the same instance!
 ```
 
 ### factory构造函数
+factory构造函数本质上就是一个具有返回值的函数
 1. 如果想从缓存中获取一个实例并返回，或者返回一个子类型的实例，可以用一个工厂构造函数。
 2. 如果你希望你的抽象类 是可实例化的，则定义一个工厂构造函数。
 3. [factory redirect](https://segmentfault.com/a/1190000011276853)
