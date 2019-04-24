@@ -56,15 +56,16 @@ var print = (i){ console.log(i);};
 ### 变量
 
 1. const和final都是不能修改的变量，const变量同时也是final变量。顶级的 final 变量或者类中的 final 变量在 第一次使用的时候初始化，const是编译时常量。
-2. const 关键字不仅仅只用来定义常量。 有可以用来创建不变的值
+2. 实例变量可以为 final 但是不能是 const，如果 const 变量在类中，必须定义为 static const。
+3. const 关键字不仅仅只用来定义常量。 有可以用来创建不变的值
    ```
    var foo = const [];   // foo is currently an EIA.
    final bar = const []; // bar will always be an EIA.
    const baz = const []; // baz is a compile-time constant EIA.
    ```
-3. Dart 字符串是 UTF-16 编码的字符序列。 可以使用单引号或者双引号来创建字符串。可以在字符串中使用表达式，用法是这样的： ${expression}。
-4. == 操作符判断两个对象的内容是否一样。 如果两个字符串包含一样的字符编码序列， 则他们是相等的。
-5. 在 Dart 中数组就是 List 对象。
+4. Dart 字符串是 UTF-16 编码的字符序列。 可以使用单引号或者双引号来创建字符串。可以在字符串中使用表达式，用法是这样的： ${expression}。
+5. == 操作符判断两个对象的内容是否一样。 如果两个字符串包含一样的字符编码序列， 则他们是相等的。
+6. 在 Dart 中数组就是 List 对象。
    ```
    List<int> list = const [1, 2, 3],
    ```
