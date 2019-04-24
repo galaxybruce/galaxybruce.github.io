@@ -277,7 +277,7 @@ Mobile平台上面每一个Engine实例启动的时候会为UI，GPU，IO Runner
 注意点:
 
 1. flutter工程（包括四种形式）可以通过android studio或者vs code直接运行，所以能断点调试。
-2. 混编工程，必须先通过android studio的菜单run-flutter attach，然后启动app，依附成功了就可以直接打断点调试，也可以热重载。
+2. 混编工程，必须先通过android studio的菜单run-flutter attach，然后启动app，依附成功了就可以直接打断点调试，也可以热重载。参考[Flutter 开发 （2）优雅的 Flutter 组件化 混编方案](https://www.jianshu.com/p/969aa7e37827)
 3. 直接在terminal运行flutter attach不能在IDE中点断调试。
 
 
