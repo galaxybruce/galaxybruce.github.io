@@ -223,6 +223,7 @@ android {
 }
 ```
 4. 如果项目依赖了插件，执行flutter get packages命令后，插件的本地代码会自动作为library注册到.flutter-plugins文件中，并且插件入口类会自动注册到io.flutter.plugins.GeneratedPluginRegistrant.java文件中。
+5. 插件修改后需要先上传git，主工程在pubspec.yaml中更新Packages Upgrade后就可以执行热重载。
 
 添加文档
 建议将以下文档添加到所有软件包：
@@ -275,7 +276,10 @@ Mobile平台上面每一个Engine实例启动的时候会为UI，GPU，IO Runner
 
 注意点:
 
-1. 只有通过android studio或者vs code直接运行才能断点调试，经过实践证明flutter attach不能在IDE中点断调试。
+1. flutter工程（包括四种形式）可以通过android studio或者vs code直接运行，所以能断点调试。
+2. 混编工程，必须先通过android studio的菜单run-flutter attach，然后启动app，依附成功了就可以直接打断点调试，也可以热重载。
+3. 直接在terminal运行flutter attach不能在IDE中点断调试。
+
 
 
 ## 开发工具VSCode
