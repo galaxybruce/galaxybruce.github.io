@@ -212,6 +212,7 @@ if ("1".equals(FLUTTER_SOURCE)) {
 ######################################################################
 # 使用方式: ./androidFlutter version artifactId groupId
 # 如： ./androidFlutter 0.0.1-SNAPSHOT kwmoduleflutter com.xxx
+# 注意，在使用该命令之前先把.android/gradle.properties中的FLUTTER_SOURCE变为1
 ######################################################################
 
 # 定义默认groupId
