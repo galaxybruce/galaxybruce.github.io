@@ -72,7 +72,7 @@ Google 把 Flutter 作为 Fuchsia 的用户界面，Dart 作为主要的编程�
 1. Flutter Widget采用现代响应式框架构建，这是从 React 中获得的灵感，中心思想是用widget构建你的UI。
 2. 框架强制根widget覆盖整个屏幕。
 3. Flutter框架将依次构建这些widget，直到构建到最底层的子widget时，这些最低层的widget通常为RenderObject，它会计算并描述widget的几何形状。
-4. 无状态的widget，它将通过构造函数从父widget中接收到的值存储在**final**成员变量中，然后在build函数中使用它们。
+4. Widget子类中的字段往往都会定义为"final"，无状态的widget，它将通过构造函数从父widget中接收到的值存储在**final**成员变量中，然后在build函数中使用它们。
 5. 如果要添加填充，边距，边框或背景色，请使用Container等容器类型的widget来设置（译者语：只有容器有这些属性）
 6. 在Flutter中，一个自定义widget通常是通过组合其它widget来实现的，而不是继承。
 

@@ -1,5 +1,6 @@
 ## 参考文章：
 1. [Shell 教程](http://www.runoob.com/linux/linux-shell.html)
+2. [Linux下Shell脚本字符串单引号、双引号、反引号、反斜杠的作用和区别](https://www.cnblogs.com/EasonJim/p/8018545.html)
 
 ## shell脚本作用
 以Linux系统为例，linux系统里面有很多个命令，脚本可以是一个或者多个命令的集合，通过运行脚本，达到既定的功能或者效果。Shell脚本可以帮助我们系统、自动化的去管理和处理一些东西，举个例子，我们在做集成自动化测试的过程当中，经常都需要做的几步工作
