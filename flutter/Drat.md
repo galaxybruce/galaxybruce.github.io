@@ -25,12 +25,13 @@ var print = (i){ console.log(i);};
 
 1. vscode调试也是用dart插件
 2. 调试入口在左侧面板上有，启动调试时，会自动在.vscode目录下创建launch.json文件，需要调试哪个文件都要在这里面配置
+
 ```
 {
-"name": "hello", //调试任务名称
-"program": "hello.dart", //待调试文件路径
-"request": "launch", //固定的
-"type": "dart" // 固定的
+    "name": "hello", //调试任务名称
+    "program": "hello.dart", //待调试文件路径
+    "request": "launch", //固定的
+    "type": "dart" // 固定的
 }
 ```
 3. 从“调试-启动调试“菜单调试的是左侧面板中当前选中的调试任务
@@ -58,6 +59,7 @@ var print = (i){ console.log(i);};
 1. const和final都是不能修改的变量，const变量同时也是final变量。顶级的 final 变量或者类中的 final 变量在 第一次使用的时候初始化，const是编译时常量。
 2. 实例变量可以为 final 但是不能是 const，如果 const 变量在类中，必须定义为 static const。
 3. const 关键字不仅仅只用来定义常量。 有可以用来创建不变的值
+
 ```
 var foo = const []; // foo is currently an EIA.
 final bar = const []; // bar will always be an EIA.
@@ -66,6 +68,7 @@ const baz = const []; // baz is a compile-time constant EIA.
 4. Dart 字符串是 UTF-16 编码的字符序列。 可以使用单引号或者双引号来创建字符串。可以在字符串中使用表达式，用法是这样的： ${expression}。
 5. == 操作符判断两个对象的内容是否一样。 如果两个字符串包含一样的字符编码序列， 则他们是相等的。
 6. 在 Dart 中数组就是 List 对象。
+
 ```
 List<int> list = const [1, 2, 3],
 ```
@@ -76,7 +79,7 @@ List<int> list = const [1, 2, 3],
 
 ```
 enableFlags({bool bold, bool hidden}) {
-// ...
+    // ...
 }
 // 可选参数用=号或者:号来设置默认值，没设置就是null
 void enableFlags({bool bold = false, bool hidden = false}) {
@@ -120,14 +123,14 @@ VoidCallback callback;
 
 ```
 Function makeAdder(num addBy) {
-return (num i) => addBy + i;
+    return (num i) => addBy + i;
 }
 
 main() {
-// Create a function that adds 2.
-// 不管你在那里执行 makeAdder() 所返回的函数， 都可以使用 addBy 参数。
-var add2 = makeAdder(2);
-assert(add2(3) == 5);
+    // Create a function that adds 2.
+    // 不管你在那里执行 makeAdder() 所返回的函数， 都可以使用 addBy 参数。
+    var add2 = makeAdder(2);
+    assert(add2(3) == 5);
 }
 ```
 
@@ -135,12 +138,14 @@ assert(add2(3) == 5);
 
 1. as操作符：使用 as 操作符把对象转换为特定的类型
 2. ??= 操作符用来指定 值为 null 的变量的值
+
 ```
 b ??= value; // 如果 b 是 null，则赋值给 b；
 ```
 3. expr1 ?? expr2 &ensp;&ensp;// 如果 expr1 是 non-null，返回其值； 否则执行 expr2 并返回其结果。
 4. ?.&ensp;&ensp;// 例如 foo?.bar 如果 foo 为 null 则返回 null，否则返回 bar 成员
 5. 要测试两个对象代表的是否为同样的内容，使用 == 操作符。\(在某些情况下，你需要知道两个对象是否是同一个对象， 使用 identical\(\) 方法。\)
+
 ```
 // 两个一样的编译时常量其实是 同一个对象：
 var a = const ImmutablePoint(1, 1);
@@ -158,15 +163,15 @@ assert(identical(a, b)); // They are the same instance!
 
 ```
 for (int i = 0; i < candidates.length; i++) {
-var candidate = candidates[i];
-if (candidate.yearsExperience < 5) {
-continue;
-}
-candidate.interview();
+    var candidate = candidates[i];
+    if (candidate.yearsExperience < 5) {
+        continue;
+    }
+    candidate.interview();
 }
 // 可以这样写
 candidates.where((c) => c.yearsExperience >= 5)
-.forEach((c) => c.interview());
+    .forEach((c) => c.interview());
 ```
 
 3. switch case中可以设置标签，用continue跳转到指定的标签处
@@ -174,34 +179,35 @@ candidates.where((c) => c.yearsExperience >= 5)
 ```
 var command = 'CLOSED';
 switch (command) {
-case 'CLOSED':
-executeClosed();
-continue nowClosed;
-// Continues executing at the nowClosed label.
-nowClosed:
-case 'NOW_CLOSED':
-// Runs for both CLOSED and NOW_CLOSED.
-executeNowClosed();
-break;
+    case 'CLOSED':
+        executeClosed();
+        continue nowClosed;
+        // Continues executing at the nowClosed label.
+    nowClosed:
+    case 'NOW_CLOSED':
+        // Runs for both CLOSED and NOW_CLOSED.
+        executeNowClosed();
+    break;
 }
 ```
 
 4. assert断言只在检查模式下运行有效，如果在生产模式 运行，则断言不会执行。
 5. Exception
 可以使用on 或者 catch 来声明捕获语句，也可以 同时使用。使用 on 来指定异常类型，使用 catch 来 捕获异常对象。使用 rethrow 关键字可以 把捕获的异常给 重新抛出。
+
 ```
 try {
-breedMoreLlamas();
+    breedMoreLlamas();
 } on OutOfLlamasException {
-// A specific exception
-buyMoreLlamas();
+    // A specific exception
+    buyMoreLlamas();
 } on Exception catch (e) {
-// Anything else that is an exception
-print('Unknown exception: $e');
+    // Anything else that is an exception
+    print('Unknown exception: $e');
 } catch (e) {
-// No specified type, handles all
-print('Something really unknown: $e');
-rethrow; // Allow callers to see the exception.
+    // No specified type, handles all
+    print('Something really unknown: $e');
+    rethrow; // Allow callers to see the exception.
 }
 ```
 
@@ -212,11 +218,11 @@ rethrow; // Allow callers to see the exception.
 
 ```
 class Point {
-num x;
+    num x;
 
-// Syntactic sugar for setting x and y
-// before the constructor body runs.
-Point(this.x);
+    // Syntactic sugar for setting x and y
+    // before the constructor body runs.
+    Point(this.x);
 }
 ```
 
@@ -228,42 +234,43 @@ num x;
 num y;
 
 Point(this.x, this.y);
-// Named constructor
-Point.fromJson(Map json) {
-x = json['x'];
-y = json['y'];
-}
+    // Named constructor
+    Point.fromJson(Map json) {
+        x = json['x'];
+        y = json['y'];
+    }
 }
 ```
 
 4. 在构造函数参数后使用冒号 \(:\) 可以调用 超类构造函数
+
 ```
 class Employee extends Person {
-// Person does not have a default constructor;
-// you must call super.fromJson(data).
-Employee.fromJson(Map data) : super.fromJson(data) {
-print('in Employee');
-}
+    // Person does not have a default constructor;
+    // you must call super.fromJson(data).
+    Employee.fromJson(Map data) : super.fromJson(data) {
+        print('in Employee');
+    }
 }
 // 由于超类构造函数的参数在构造函数执行之前执行，所以 参数可以是一个表达式或者 一个方法调用(_只能是静态方法，不能是成员方法_)：
 class Employee extends Person {
-// ...
-Employee() : super.fromJson(findDefaultData());
+    // ...
+    Employee() : super.fromJson(findDefaultData());
 }
 ```
 5. 冒号 \(:\)在构造函数体执行之前除了可以调用超类构造函数之外，还可以 初始化实例参数。
 
 ```
 Point.fromJson(Map jsonMap)
-: x = jsonMap['x'],
-y = jsonMap['y'] {
-print('In Point.fromJson(): ($x, $y)');
+    : x = jsonMap['x'],
+    y = jsonMap['y'] {
+    print('In Point.fromJson(): ($x, $y)');
 }
 
 Point(x, y)
-: x = x,
-y = y,
-distanceFromOrigin = sqrt(x * x + y * y);
+    : x = x,
+    y = y,
+    distanceFromOrigin = sqrt(x * x + y * y);
 ```
 
 6. 如果一个构造函数并不总是返回一个新的对象，则使用 factory 来定义 这个构造函数。类似单例。
@@ -274,18 +281,18 @@ distanceFromOrigin = sqrt(x * x + y * y);
 
 ```
 class Rectangle {
-num left;
-num top;
-num width;
-num height;
+    num left;
+    num top;
+    num width;
+    num height;
 
-Rectangle(this.left, this.top, this.width, this.height);
+    Rectangle(this.left, this.top, this.width, this.height);
 
-// Define two calculated properties: right and bottom.
-num get right => left + width;
-set right(num value) => left = value - width;
-num get bottom => top + height;
-set bottom(num value) => top = value - height;
+    // Define two calculated properties: right and bottom.
+    num get right => left + width;
+    set right(num value) => left = value - width;
+    num get bottom => top + height;
+    set bottom(num value) => top = value - height;
 }
 
 ```
@@ -301,14 +308,14 @@ Rectangle({this.origin = const Point(0, 0), this.width = 0, this.height = 0});
 
 @override
 String toString() =>
-'Origin: (${origin.x}, ${origin.y}), width: $width, height: $height';
+    'Origin: (${origin.x}, ${origin.y}), width: $width, height: $height';
 }
 
 main() {
-print(Rectangle(origin: const Point(10, 20), width: 100, height: 200));
-print(Rectangle(origin: const Point(10, 10)));
-print(Rectangle(width: 200));
-print(Rectangle());
+    print(Rectangle(origin: const Point(10, 20), width: 100, height: 200));
+    print(Rectangle(origin: const Point(10, 10)));
+    print(Rectangle(width: 200));
+    print(Rectangle());
 }
 ```
 
@@ -317,10 +324,12 @@ print(Rectangle());
 
 ### 常量构造函数
 有些类提供了常量构造函数。使用常量构造函数 可以创建编译时常量，要使用常量构造函数只需要用 const 替代 new 即可：
+
 ```
 var p = const ImmutablePoint(2, 2);
 ```
 两个一样的编译时常量其实是 同一个对象：
+
 ```
 var a = const ImmutablePoint(1, 1);
 var b = const ImmutablePoint(1, 1);
@@ -341,6 +350,7 @@ const factory Key(String value) = ValueKey<String>;
 factory Map.from(Map other) = LinkedHashMap<K, V>.from;
 ```
 这里用到了factory redirect，等效于
+
 ```
 const factory Key(String value) => new ValueKey<String>(value);
 ```
@@ -351,12 +361,14 @@ Dart是没有interface这种东西的，但并不以为着这门语言没有接�
 ### 使用库
 
 1. 对于内置的库，URI 使用特殊的 dart: scheme; 对于其他的库，你可以使用文件系统路径或者 package: scheme
+
 ```
 import 'dart:io';
 import 'package:mylib/mylib.dart';
 import 'package:utils/utils.dart' as utils;
 ```
 2. 导入库的一部分 用关键字show或者hide
+
 ```
 // Import only foo.
 import 'package:lib1/lib1.dart' show foo;
@@ -373,15 +385,16 @@ import 'package:lib2/lib2.dart' hide foo;
 [Flutter基础：理解Dart的Mixin继承机制](https://kevinwu.cn/p/ae2ce64/#%E5%9C%BA%E6%99%AF)
 mixins是一个强大的概念，允许您跨多个类层次结构重用代码。当我们想要在不共享相同类层次结构的多个类之间共享行为时，或者在超类中实现此类行为没有意义时，Mixins非常有用。
 如果我们不想让我们创建的mixin被实例化或扩展，同时使用factory关键字结合_权限符
+
 ```
 abstract class Walker {
-// This class is intended to be used as a mixin, and should not be
-// extended directly.
-factory Walker._() => null;
+    // This class is intended to be used as a mixin, and should not be
+    // extended directly.
+    factory Walker._() => null;
 
-void walk() {
-print("I'm walking");
-}
+    void walk() {
+        print("I'm walking");
+    }
 }
 ```
 
@@ -390,12 +403,13 @@ print("I'm walking");
 2. 如果 await 无法正常使用，请确保是在一个 async 方法中。
 3. 在 await expression 中， expression 的返回值通常是一个 Future； 如果返回的值不是 Future，则 Dart 会自动把该值放到 Future 中返回。await expression 会阻塞住，直到需要的对象返回为止。
 4. 异步方法也可以匿名
+
 ```
 // 第二个参数是一个异步匿名函数，返回值是Future<dynamic>
 setUp(() {
-channel.setMockMethodCallHandler((MethodCall methodCall) async {
-return '42';
-});
+    channel.setMockMethodCallHandler((MethodCall methodCall) async {
+        return '42';
+    });
 });
 ```
 5. await expression 会阻塞住，直到需要的对象返回为止。
@@ -407,12 +421,13 @@ return '42';
 要实现同步生成器函数，将函数体标记为sync*，并使用yield语句传递值;
 要实现异步生成器函数，将函数体标记为async*，并使用yield语句传递值;
 如果您的生成器是递归的，您可以使用yield*来改进它的性能:
+
 ```
 Iterable<int> naturalsDownFrom(int n) sync* {
-if (n > 0) {
-yield n;
-yield* naturalsDownFrom(n - 1);
-}
+    if (n > 0) {
+        yield n;
+        yield* naturalsDownFrom(n - 1);
+    }
 }
 ```
 
@@ -443,6 +458,7 @@ typedef Compare = int Function(int a, int b);
 
 ## Metadata
 定义了一个带有两个参数的 @todo 注解
+
 ```
 library todo;
 
