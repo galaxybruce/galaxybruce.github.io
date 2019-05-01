@@ -4,6 +4,7 @@
 2. [Dart](https://www.dartlang.org/)
 3. [stagehand-Dart 项目生成器](https://github.com/dart-lang/stagehand)
 4. [最佳实践](http://dart.goodev.org/guides/language/effective-dart/usage)
+5. [编写高质量Dart程序](https://www.kancloud.cn/marswill/effective_dart/728173)
 
 ## 在线练习
 [dartpad](https://dartpad.cn)
