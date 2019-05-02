@@ -102,6 +102,12 @@ plugin2:
 ## 一切皆控件
 在Flutter中，所有功能都可以通过组合多个Widget来实现，包括对齐方式、按行排列、按列排列、网格排列甚至事件处理等等。在Flutter中“一切皆是控件”，通过组合、嵌套不同类型的控件，就可以构建出任意功能、任意复杂度的界面
 
+## Widget与Element、State的关系
+Widget实际上就是Element的配置数据，Widget树实际上是一个配置树，而真正的UI渲染树是由Element构成；
+一个Widget可以对应多个Element，这是因为同一个Widget对象可以被添加到UI树的不同部分。
+而在stateful widget中，State对象也和StatefulElement具有对应关系（一对一）。因此Widget和State
+也是一对多的关系。State实例只会在第一次插入到树中时被创建，当在重新构建时，如果widget被修改了，Flutter framework会
+动态设置State.widget为新的widget实例，而State本身不会重建。
 
 ## [Android发布版本](https://flutterchina.club/android-release/)
 默认情况下，flutter run命令会使用调试版本配置。
