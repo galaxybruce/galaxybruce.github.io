@@ -21,7 +21,7 @@ flutter工程目前有四种形式：
 
 ```
 // 自己开发的插件
-helloplugin=/Users/bruce/work/kidswant/sourcecode/Projects_Android/git/flutter/helloplugin/
+helloplugin=/Users/bruce/work/sourcecode/Projects_Android/git/flutter/helloplugin/
 // 第三方的插件
 url_launcher=/Users/bruce/.pub-cache/hosted/pub.flutter-io.cn/url_launcher-5.0.2/
 ```
