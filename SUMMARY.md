@@ -3,7 +3,7 @@
 * [Introduction](README.md)
 * [Flutter](flutter.md)
   * [Flutter初探](flutter/Flutter初探.md)
-  * [Flutter混编一键打包并上传maven](flutter/Flutter混表一键打包并上传maven.md)
+  * [Flutter混编一键打包并上传maven](flutter/Flutter混编一键打包并上传maven.md)
   * [Dart](flutter/Drat.md)
 * [Linux](linux.md)
   * [Shell脚本](linux/shell脚本.md)
