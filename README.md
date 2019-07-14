@@ -1,6 +1,7 @@
 * Flutter
     * [Flutter初探](flutter/Flutter初探.md)
     * [Flutter混编一键打包并上传maven](flutter/Flutter混编一键打包并上传maven.md)
+    * [Flutter module上传maven shell脚本](flutter/Flutter module上传maven shell脚本.md)
     * [Dart](flutter/Drat.md)
 * Linux
     * [Shell脚本](linux/shell脚本.md)
