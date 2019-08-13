@@ -4,7 +4,6 @@
 ######################################################################
 # 使用方式: ./androidFlutter version artifactId groupId
 # 如： ./androidFlutter 0.0.14-SNAPSHOT kwmoduleflutter com.galaxybruce.flutter
-# 注意，在使用该命令之前先把.android/gradle.properties中的FLUTTER_SOURCE变为1
 ######################################################################
 
 # 定义默认groupId
