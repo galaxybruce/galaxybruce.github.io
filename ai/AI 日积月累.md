@@ -24,6 +24,7 @@
       - [claude-vision-skill](#claude-vision-skill)
       - [Superpowers 插件](#superpowers-插件)
     - [专题 2 · CodeGraph 使用](#专题-2--codegraph-使用)
+    - [专题 3 · pre-commit 使用](#专题-3--pre-commit-使用)
   - [四、模型部署](#四模型部署)
     - [专题 1 · 大模型本地部署的显存计算：精度与量化](#专题-1--大模型本地部署的显存计算精度与量化)
 
@@ -149,6 +150,11 @@
   - `codegraph uninstall`：从已配置的 Agent 中移除并卸载（`--keep-cli` 仅移除 Agent 配置）
   - `codegraph uninit`：删除某个项目的本地索引
 - 使用建议：CodeGraph 只在被 Agent 直接查询时生效，建议让 Agent 优先直接查询图谱，而不是退回逐文件探索，否则图索引会成为额外开销
+
+### 专题 3 · pre-commit 使用
+
+- 独立文档：[pre-commit使用](pre-commit使用.md)
+- 归类说明：`pre-commit` 属于开发工具链与自动化校验能力，统一收拢在「工具与 Skill」分类下，避免在仓库总目录重复展开。
 
 ## 四、模型部署
 

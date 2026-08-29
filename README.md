@@ -2,8 +2,6 @@
 
   * [AI 日积月累](ai/AI%20日积月累.md)
 
-  * [windows上获取iphone应用日志](ai/windows上获取iphone应用日志.md)
-
   * 规则
 
     * [AGENTS模板](ai/规则/AGENTS模板.md)
@@ -39,4 +37,8 @@
 * git仓库
 
   * [git-flow](git仓库/git-flow.md)
+
+* iOS
+
+  * [windows上获取iphone应用日志](ios/windows上获取iphone应用日志.md)
 
