@@ -397,6 +397,11 @@ cd /path/to/your-repo
 pre-commit run <hook-id> --all-files
 ```
 
+这样做的目的主要是：
+- 更早发现格式、语法、lint 问题
+- 让 AI 先修完，再进入提交流程
+- 避免等到 `git commit` 时才被 hook 拦住
+
 ## 9. 建议的团队实践
 
 对任意项目，建议采用以下约定：
