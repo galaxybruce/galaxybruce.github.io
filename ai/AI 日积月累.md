@@ -20,11 +20,12 @@
   - [二、提示词工程](#二提示词工程)
     - [专题 1 · 提示词写作要点：复杂任务的四要素](#专题-1--提示词写作要点复杂任务的四要素)
   - [三、工具与 Skill](#三工具与-skill)
-    - [专题 1 · AI Skill 与插件收集记录](#专题-1--ai-skill-与插件收集记录)
+    - [专题 1 · AI Skill 收集记录](#专题-1--ai-skill-收集记录)
       - [claude-vision-skill](#claude-vision-skill)
+    - [专题 2 · AI 插件收集记录](#专题-2--ai-插件收集记录)
       - [Superpowers 插件](#superpowers-插件)
-    - [专题 2 · CodeGraph 使用](#专题-2--codegraph-使用)
-    - [专题 3 · pre-commit 使用](#专题-3--pre-commit-使用)
+    - [专题 3 · CodeGraph 使用](#专题-3--codegraph-使用)
+    - [专题 4 · pre-commit 使用](#专题-4--pre-commit-使用)
   - [四、模型部署](#四模型部署)
     - [专题 1 · 大模型本地部署的显存计算：精度与量化](#专题-1--大模型本地部署的显存计算精度与量化)
 
@@ -97,7 +98,7 @@
 
 ## 三、工具与 Skill
 
-### 专题 1 · AI Skill 与插件收集记录
+### 专题 1 · AI Skill 收集记录
 
 #### claude-vision-skill
 
@@ -105,6 +106,8 @@
 - GitHub 地址：https://github.com/asuojun/claude-vision-skill
 - 安装提示词：
 - 请帮我全局安装开源的 Vision Skill。项目的 GitHub 地址是：https://github.com/asuojun/claude-vision-skill。请按照项目的配置要求，将其中的视觉模型指定为智普的GLM-4.6V-Flash，并将我的 API Key 配置为 \\\<在此填入你的 API Key，勿写入文档\>。安装好后请告知我。
+
+### 专题 2 · AI 插件收集记录
 
 #### Superpowers 插件
 
@@ -121,7 +124,7 @@
 - 安装提示词：
 - 在 Claude Code 会话中执行 `claude plugin install superpowers`（或 `/plugin install superpowers@claude-plugins-official`）。下次启动会话时看到 "You have Superpowers" 提示即表示安装成功。建议只在 CLAUDE.md 中显式开启常用 2\~3 个模块（如 brainstorming、test-driven-development、verification-before-completion），其余按项目需要再启用，避免 20+ 模块全开导致上下文压力过大。
 
-### 专题 2 · CodeGraph 使用
+### 专题 3 · CodeGraph 使用
 
 - 作用：开源的本地代码知识图谱工具，为 AI 编程 Agent（Codex CLI、Claude Code、Cursor、opencode 等）预建项目结构地图，一次工具调用即可返回入口点、关联符号与调用链，减少反复 grep / 逐文件读取的开销
 - 项目地址：https://github.com/colbymchenry/codegraph
@@ -151,7 +154,7 @@
   - `codegraph uninit`：删除某个项目的本地索引
 - 使用建议：CodeGraph 只在被 Agent 直接查询时生效，建议让 Agent 优先直接查询图谱，而不是退回逐文件探索，否则图索引会成为额外开销
 
-### 专题 3 · pre-commit 使用
+### 专题 4 · pre-commit 使用
 
 - 独立文档：[pre-commit使用](pre-commit使用.md)
 - 归类说明：`pre-commit` 属于开发工具链与自动化校验能力，统一收拢在「工具与 Skill」分类下，避免在仓库总目录重复展开。
