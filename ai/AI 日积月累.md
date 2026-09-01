@@ -113,6 +113,7 @@
 
 - 作用：开源的 Claude Code 工程化开发插件（作者 Jesse Vincent / obra，GitHub 14 万+ stars），通过一套可组合的 skill 模块（20+ 个）强制 AI 走结构化工作流——先讨论方案、再写计划、再 TDD 实现、再自检与验证，避免「上来就写代码、写完就说 done」。
 - GitHub 地址：https://github.com/obra/superpowers
+- 相关文档：[superpowers使用技巧](superpowers使用技巧.md)
 - 用途与场景：核心模块包括
   - **brainstorming**：需求讨论，先拉着 AI 探索不同路径、把关键决策点梳理清楚再动手（最有用的模块之一）
 - **writing-plans**：把需求拆解成实现计划
