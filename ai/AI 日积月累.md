@@ -26,6 +26,7 @@
       - [Superpowers 插件](#superpowers-插件)
     - [专题 3 · CodeGraph 使用](#专题-3--codegraph-使用)
     - [专题 4 · pre-commit 使用](#专题-4--pre-commit-使用)
+    - [专题 5 · OpenSpec 使用](#专题-5--openspec-使用)
   - [四、模型部署](#四模型部署)
     - [专题 1 · 大模型本地部署的显存计算：精度与量化](#专题-1--大模型本地部署的显存计算精度与量化)
 
@@ -159,6 +160,27 @@
 
 - 独立文档：[pre-commit使用](pre-commit使用.md)
 - 归类说明：`pre-commit` 属于开发工具链与自动化校验能力，统一收拢在「工具与 Skill」分类下，避免在仓库总目录重复展开。
+
+### 专题 5 · OpenSpec 使用
+
+- 作用：OpenSpec 是一套以 Spec 为中心的规范驱动开发工具链，核心目标是先沉淀结构化规格，再驱动 AI 与工程流程按规格落地，降低“需求说了一遍、代码却跑偏”的概率。
+- 核心价值：
+  - **规格先行**：将需求、设计、任务拆成结构化工件，让 AI 有明确的执行边界，而不是只凭上下文自由发挥。
+  - **增量变更**：适合已有项目持续迭代，通过变更集逐步追加、修改、归档规格，不要求一开始就把所有文档写全。
+  - **可验证交付**：将 proposal、design、specs、tasks 串成闭环，便于检查方案、追踪实现和复盘变更。
+- 典型流程：
+  1. 安装并初始化 OpenSpec，例如通过 `npm install -g @fission-ai/openspec@latest` 和 `openspec init` 建立基础目录。
+  2. 为某个功能创建变更，让 AI 生成 proposal、design、tasks 以及对应的 specs 变更草案。
+  3. 在实现前先审阅规格，在实现后再做校验、归档，让“当前事实”和“进行中变更”分离管理。
+- 适用场景：
+  - 复杂功能开发，涉及多个模块、接口或测试联动
+  - 需要多人协作、审阅、追踪上下文的中大型改动
+  - 希望约束 AI 按规格执行，而不是直接进入 Vibe Coding 式反复试错
+- 与 Superpowers 的关系：两者不是完全替代关系。可以粗略理解为 `Superpowers` 更强调 AI 的行为纪律与执行流程，`OpenSpec` 更强调规格管理与变更工件组织；在复杂项目里两者可以互补。
+- 参考文档：
+  - [OpenSpec vs Superpowers：2 套 AI 编码工作流，3 个场景怎么选？](https://cloud.tencent.com/developer/article/2649111)
+  - [OpenSpec 实战指南](https://github.com/ForceInjection/OpenSpec-practise/blob/main/docs/openspec-practical-guide.md)
+  - [OpenSpec 手把手实战：从零跑通一个完整功能](https://developer.volcengine.com/articles/7628812939924406282)
 
 ## 四、模型部署
 
