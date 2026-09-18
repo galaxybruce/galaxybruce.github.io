@@ -106,6 +106,7 @@ git pull --rebase https://gerrit.yourcompany.com/project refs/changes/02/2002/2
 ```
 
 *(内幕：Git 会先把 B 本地的 B1、B2 提交临时抽离，将本地代码对齐成 A 的最新 PS2 版，然后再把 B1 和 B2 自动补在最上面。保证历史是一条直线)*
+
 2. **【安全避坑：变基过程中提示 Conflict 冲突怎么办？】** 
 
   * **原因**：A 修改的底层接口，与 B 已经 commit 的支付逻辑产生了代码冲突。
@@ -119,6 +120,7 @@ git rebase --continue
 ```
 
 *(注：由于 B 本地有两个 commit，如果它们都和 A 的修改冲突，这个“解冲突 -> add -> continue”的过程可能会重复两次)*
+
 3. **【在 B 的本地 feat-pay 分支】** 变基完成后，把本地分支再次推回 Gerrit： 
 
 ```bash
@@ -147,6 +149,7 @@ git pull --rebase https://gerrit.yourcompany.com/project refs/changes/02/2002/2
 ```
 
 *(如果遇到冲突，请参考情况 1 的 git rebase --continue 方式解决)*
+
 3. **【在 B 的本地 feat-pay 分支】** 变基完成后，从保险箱取出自己的私货继续开发： 
 
 ```bash
