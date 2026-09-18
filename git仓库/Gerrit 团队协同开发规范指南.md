@@ -38,13 +38,7 @@ git push origin HEAD:refs/for/master
 ### 第二步：B 同学创建独立分支，并引入 A “尚未 Submit” 的代码并行开发
 
 1. **【在 B 的本地 master 分支】** 确保本地基础代码是最新的：git pull。
-2. **【在 B 的本地 master 分支】** 先基于当前 master 建立自己的本地特性分支： 
-
-```bash
-
-git checkout -b feat-pay
-
-```
+2. **【在 B 的本地 master 分支】** 先基于当前 master 建立自己的本地特性分支：git checkout -b feat-pay
 3. **【在 B 的本地 feat-pay 分支】** 去 Gerrit 2002 页面，复制其专属引用路径。通过 **fetch + rebase** 纯正的变基组合拳，将 A 尚未 Submit 的代码拉入自己当前的分支： 
 
 ```bash
@@ -58,6 +52,7 @@ git rebase FETCH_HEAD
 ```
 
 *(此时 B 的 feat-pay 分支里，已经完美且干净地包含了 A 正在审核中的购物车 API 代码)*
+
 4. **【在 B 的本地 feat-pay 分支】** 独立高频开发，连续提交两次（B1 和 B2）： 
 
 ```bash
